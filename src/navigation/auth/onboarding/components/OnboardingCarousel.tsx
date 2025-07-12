@@ -27,14 +27,17 @@ export const OnboardingCarousel = ({
   };
 
   return (
-    <View style={{ paddingBottom: 32 }}>
+    <View>
       <Carousel
         ref={ref}
         width={Dimensions.get("window").width - 40}
-        height={200}
+        height={Math.max(Dimensions.get("window").height * 0.2, 200)}
         data={data}
         loop={false}
         onProgressChange={progress}
+        style={{
+          marginBottom: 24,
+        }}
         renderItem={({ item }) => (
           <View
             style={{
@@ -49,6 +52,7 @@ export const OnboardingCarousel = ({
                 fontSize: 24,
                 color: colors.primary,
                 fontWeight: 'bold',
+                marginBottom: 16,
               }}>
               {item.title}
             </Text>

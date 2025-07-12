@@ -1,10 +1,11 @@
-import { Image } from 'react-native';
-import { Background, Button, Layout } from '../../../components';
+import { Image, View } from 'react-native';
+import { Background, Button, ButtonSecondary, Header, Layout } from '../../../components';
 import { SvgUri } from 'react-native-svg';
 import { OnboardingCarousel } from './components';
 import { useRef, useState } from 'react';
 import { ICarouselInstance } from 'react-native-reanimated-carousel';
 import { getOnboardingData } from './helper';
+import { useColors } from '../../../styles';
 
 export const Onboarding = () => {
   const ref = useRef<ICarouselInstance>(null);
@@ -13,9 +14,13 @@ export const Onboarding = () => {
 
   const [onboardingData] = useState(getOnboardingData())
 
+  const colors = useColors();
+
   return (
     <Background>
       <Layout>
+        <Header rightComponent={() => <ButtonSecondary text="Skip" onPress={() => {}} />} />
+
         <SvgUri
           width="100%"
           height="43%"
@@ -29,15 +34,32 @@ export const Onboarding = () => {
           }
         />
 
-        <OnboardingCarousel
-          carouselRef={ref}
-          data={onboardingData}
-          setActiveIndex={setActiveIndex}
-        />
-        <Button
-          text={activeIndex === onboardingData.length - 1 ? "Finish" : "Next"}
-          onPress={() => ref.current?.next()}
-        />
+        <View
+          style={{
+            backgroundColor: colors.backgroundSecondary,
+            borderRadius: 48,
+            paddingTop: 36,
+            // flex: 1,
+            overflow: 'hidden',
+            // justifyContent: 'center',
+          }}
+        >
+          <OnboardingCarousel
+            carouselRef={ref}
+            data={onboardingData}
+            setActiveIndex={setActiveIndex}
+          />
+
+          <Button
+            text={activeIndex === onboardingData.length - 1 ? "Finish" : "Next"}
+            onPress={() => ref.current?.next()}
+            containerStyle={{
+              marginTop: 32,
+              marginBottom: 36,
+              marginHorizontal: 24,
+            }}
+          />
+        </View>
       </Layout>
     </Background>
   );
