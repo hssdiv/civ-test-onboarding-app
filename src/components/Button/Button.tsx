@@ -1,10 +1,12 @@
-import { Platform, Pressable, PressableProps, View } from 'react-native';
+import { PixelRatio, Platform, Pressable, PressableProps, View } from 'react-native';
 import { Text } from '../Text';
 import { useColors } from '../../styles';
+import { useState } from 'react';
 
 export const Button = ({
   text,
   onPress,
+  style,
   ...rest
 }: {
   text: string;
@@ -12,25 +14,27 @@ export const Button = ({
 
   const colors = useColors();
 
+  const [minHeight] = useState(56)
+
   return (
     <View
       style={{
         overflow: 'hidden',
         borderRadius: 30,
-        flex: 1,
-        minHeight: 56,
+        minHeight,
       }}
     >
       <Pressable
         onPress={onPress}
         android_ripple={{
-          color: 'rgba(0, 0, 0, 0.2)',
+          color: 'rgba(0, 0, 0, 0.4)',
         }}
         style={({ pressed }) => ({
-          backgroundColor: Platform.OS === 'ios' ? pressed ? colors.buttonPressed : colors.button : colors.button,
-          flex: 1,
+          backgroundColor: Platform.OS === 'ios' ? pressed ? colors.buttonPressed : colors.primary : colors.primary,
+          paddingVertical: (minHeight - PixelRatio.getFontScale() * 16) / 2,
           justifyContent: 'center',
           alignItems: 'center',
+          ...(typeof style === 'object' ? style : {})
         })}
         hitSlop={{ top: 10, bottom: 10, right: 10, left: 10 }}
         {...rest}

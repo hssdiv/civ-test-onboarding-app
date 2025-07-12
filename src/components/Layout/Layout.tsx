@@ -9,5 +9,5 @@ export const Layout = ({
   style?: ViewStyle;
   children?: ReactNode | ReactNode[];
 }) => {
-  return <View style={[{ marginHorizontal: 20 }, style]}>{children}</View>;
+  return <View style={[{ flex: 1, marginHorizontal: 20 }, style]}>{children}</View>;
 };
