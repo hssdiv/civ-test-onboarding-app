@@ -7,3 +7,4 @@ export * from './Header';
 export * from './Layout';
 export * from './PasswordField';
 export * from './Text';
+export * from './TextInput';
