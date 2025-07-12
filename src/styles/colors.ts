@@ -10,17 +10,21 @@ const colors = {
     ...baseColors,
     text: palette.black,
     textInverted: palette.white,
-    primary: palette.blueMain, 
+    primary: palette.blueMain,
+    buttonSecondary: palette.white,
     buttonPressed: palette.blueSecondary,
     background: palette.backgroundPrimary,
+    backgroundSecondary: palette.white,
   },
   dark: {
     ...baseColors,
     text: palette.white,
     textInverted: palette.black,
     primary: palette.pink,
+    buttonSecondary: palette.buttonSecondaryDark,
     buttonPressed: palette.pinkSecondary,
     background: palette.backgroundDark,
+    backgroundSecondary: palette.backgroundSecondaryDark,
   },
 };
 

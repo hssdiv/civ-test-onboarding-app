@@ -8,4 +8,6 @@ export const palette = {
   black: 'black',
   backgroundPrimary: 'rgba(245, 247, 255, 1)',
   backgroundDark: 'rgba(36, 15, 81, 1)',
+  backgroundSecondaryDark: 'rgba(58, 39, 98, 1)',
+  buttonSecondaryDark: 'rgba(80, 63, 116, 1)',
 };

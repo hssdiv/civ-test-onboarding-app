@@ -3,7 +3,7 @@ import { Text } from '../Text';
 import { useColors } from '../../styles';
 import { useState } from 'react';
 
-export const Button = ({
+export const ButtonSecondary = ({
   text,
   onPress,
   containerStyle,
@@ -16,7 +16,7 @@ export const Button = ({
 
   const colors = useColors();
 
-  const [minHeight] = useState(56)
+  const [minHeight] = useState(33)
 
   return (
     <View
@@ -35,19 +35,19 @@ export const Button = ({
           color: 'rgba(0, 0, 0, 0.4)',
         }}
         style={({ pressed }) => ({
-          backgroundColor: Platform.OS === 'ios' ? pressed ? colors.buttonPressed : colors.primary : colors.primary,
-          paddingVertical: (minHeight - PixelRatio.getFontScale() * 16) / 2,
+          backgroundColor: Platform.OS === 'ios' ? pressed ? 'lightgrey' : colors.buttonSecondary : colors.buttonSecondary,
+          paddingVertical: (minHeight - PixelRatio.getFontScale() * 14) / 2,
+          paddingHorizontal: 16,
           justifyContent: 'center',
           alignItems: 'center',
           ...(typeof style === 'object' ? style : {})
         })}
-        hitSlop={{ top: 10, bottom: 10, right: 10, left: 10 }}
+        hitSlop={{ top: 20, bottom: 20, right: 20, left: 20 }}
         {...rest}
       >
         <Text
           style={{
-            fontSize: 16,
-            color: colors.textInverted,
+            color: colors.text,
           }}
         >
           {text}
