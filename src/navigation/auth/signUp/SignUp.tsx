@@ -1,11 +1,13 @@
 import { View } from 'react-native';
-import { Text } from '../../../components';
+import { Background, Button, Layout, Text } from '../../../components';
 
 export const SignUp = () => {
 
   return (
-    <View>
-      <Text>Sign up</Text>
-    </View>
+    <Background>
+      <Layout>
+        <Button text="Create account" />
+      </Layout>
+    </Background>
   );
 };
