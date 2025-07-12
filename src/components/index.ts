@@ -5,4 +5,5 @@ export * from './ButtonSmall';
 export * from './CheckboxText';
 export * from './Header';
 export * from './Layout';
+export * from './PasswordField';
 export * from './Text';

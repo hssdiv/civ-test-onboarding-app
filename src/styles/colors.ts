@@ -8,7 +8,9 @@ const baseColors = {
 const colors = {
   light: {
     ...baseColors,
-    text: palette.black,
+    text: '#131313',
+    textSecondary: '#6C727F',
+    textTetriary: '#8F94A3',
     textInverted: palette.white,
     primary: palette.blueMain,
     buttonSmall: palette.white,
@@ -19,6 +21,8 @@ const colors = {
   dark: {
     ...baseColors,
     text: palette.white,
+    textSecondary: '#BFB4D5',
+    textTetriary: '#ABA2BE',
     textInverted: palette.black,
     primary: palette.pink,
     buttonSmall: palette.buttonSmallDark,
