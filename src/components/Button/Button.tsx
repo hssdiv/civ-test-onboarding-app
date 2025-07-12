@@ -1,4 +1,4 @@
-import { PixelRatio, Platform, Pressable, PressableProps, View, ViewStyle } from 'react-native';
+import { Platform, Pressable, PressableProps, View, ViewStyle } from 'react-native';
 import { Text } from '../Text';
 import { useColors } from '../../styles';
 import { useState } from 'react';
@@ -36,7 +36,7 @@ export const Button = ({
         }}
         style={({ pressed }) => ({
           backgroundColor: Platform.OS === 'ios' ? pressed ? colors.buttonPressed : colors.primary : colors.primary,
-          paddingVertical: (minHeight - PixelRatio.getFontScale() * 16) / 2,
+          paddingVertical: 16,
           justifyContent: 'center',
           alignItems: 'center',
           ...(typeof style === 'object' ? style : {})
@@ -47,6 +47,7 @@ export const Button = ({
         <Text
           style={{
             fontSize: 16,
+            lineHeight: 24,
             color: colors.textInverted,
           }}
         >
