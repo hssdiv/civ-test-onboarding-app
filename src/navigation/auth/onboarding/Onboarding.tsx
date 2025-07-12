@@ -1,5 +1,5 @@
 import { Image, View } from 'react-native';
-import { Background, Button, ButtonSecondary, Header, Layout } from '../../../components';
+import { Background, Button, ButtonSmall, Header, Layout } from '../../../components';
 import { SvgUri } from 'react-native-svg';
 import { OnboardingCarousel } from './components';
 import { useRef, useState } from 'react';
@@ -28,7 +28,7 @@ export const Onboarding = () => {
   return (
     <Background>
       <Header
-        rightComponent={() => <ButtonSecondary
+        rightComponent={() => <ButtonSmall
           text="Skip"
           onPress={onFinishedOnboarding}
         />}

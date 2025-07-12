@@ -3,7 +3,7 @@ import { Text } from '../Text';
 import { useColors } from '../../styles';
 import { useState } from 'react';
 
-export const ButtonSecondary = ({
+export const ButtonSmall = ({
   text,
   onPress,
   containerStyle,
@@ -35,7 +35,7 @@ export const ButtonSecondary = ({
           color: 'rgba(0, 0, 0, 0.4)',
         }}
         style={({ pressed }) => ({
-          backgroundColor: Platform.OS === 'ios' ? pressed ? 'lightgrey' : colors.buttonSecondary : colors.buttonSecondary,
+          backgroundColor: Platform.OS === 'ios' ? pressed ? 'lightgrey' : colors.buttonSmall : colors.buttonSmall,
           paddingVertical: (minHeight - PixelRatio.getFontScale() * 14) / 2,
           paddingHorizontal: 16,
           justifyContent: 'center',

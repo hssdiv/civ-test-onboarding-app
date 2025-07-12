@@ -1,6 +1,6 @@
 export * from './Background';
 export * from './Button';
-export * from './ButtonSecondary';
+export * from './ButtonSmall';
 export * from './CheckboxText';
 export * from './Header';
 export * from './Layout';
