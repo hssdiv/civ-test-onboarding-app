@@ -1,10 +1,8 @@
 import { Dimensions, Text, View } from "react-native";
-import { Extrapolation, interpolate, useSharedValue } from "react-native-reanimated";
-import Carousel, {
-  ICarouselInstance,
-  Pagination,
-} from "react-native-reanimated-carousel";
+import { useSharedValue } from "react-native-reanimated";
+import Carousel, { ICarouselInstance } from "react-native-reanimated-carousel";
 import { useColors } from "../../../../styles";
+import { OnboardingCarouselPagination } from "./OnboardingCarouselPagination";
 
 export const OnboardingCarousel = ({
   carouselRef: ref,
@@ -18,13 +16,6 @@ export const OnboardingCarousel = ({
   const progress = useSharedValue<number>(0);
 
   const colors = useColors();
-
-  const onPressPagination = (index: number) => {
-    ref.current?.scrollTo({
-      count: index - progress.value,
-      animated: true,
-    });
-  };
 
   return (
     <View>
@@ -66,49 +57,10 @@ export const OnboardingCarousel = ({
         onSnapToItem={(index) => setActiveIndex(index)}
       />
 
-      <Pagination.Custom<{ color: string }>
+      <OnboardingCarouselPagination
         progress={progress}
-        data={data.map(_ => ({ color: colors.primary }))}
-        size={20}
-        dotStyle={{
-          width: 6,
-          height: 6,
-          borderRadius: 16,
-          backgroundColor: 'rgba(187, 187, 187, 1)',
-        }}
-        activeDotStyle={{
-          borderRadius: 8,
-          width: 6,
-          height: 18,
-          overflow: "hidden",
-          backgroundColor: colors.primary,
-        }}
-        containerStyle={{
-          gap: 5,
-          alignItems: "center",
-          height: 10,
-        }}
-        horizontal
-        onPress={onPressPagination}
-        customReanimatedStyle={(progress, index, length) => {
-          let val = Math.abs(progress - index);
-          if (index === 0 && progress > length - 1) {
-            val = Math.abs(progress - length);
-          }
-
-          return {
-            transform: [
-              {
-                translateY: interpolate(
-                  val,
-                  [0, 1],
-                  [0, 0],
-                  Extrapolation.CLAMP,
-                ),
-              },
-            ],
-          };
-        }}
+        data={data}
+        carouselRef={ref}
       />
     </View>
   );

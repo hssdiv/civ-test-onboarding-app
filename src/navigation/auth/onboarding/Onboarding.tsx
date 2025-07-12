@@ -6,6 +6,8 @@ import { useRef, useState } from 'react';
 import { ICarouselInstance } from 'react-native-reanimated-carousel';
 import { getOnboardingData } from './helper';
 import { useColors } from '../../../styles';
+import { useNavigation } from '@react-navigation/native';
+import { AuthNavigation } from '../auth.stack';
 
 export const Onboarding = () => {
   const ref = useRef<ICarouselInstance>(null);
@@ -16,10 +18,20 @@ export const Onboarding = () => {
 
   const colors = useColors();
 
+  const navigation = useNavigation<AuthNavigation>();
+
+  const onFinishedOnboarding = () => {
+    // todo asyncstorage
+    navigation.navigate('SignUp')
+  }
+
   return (
     <Background>
       <Header
-        rightComponent={() => <ButtonSecondary text="Skip" onPress={() => { }} />}
+        rightComponent={() => <ButtonSecondary
+          text="Skip"
+          onPress={onFinishedOnboarding}
+        />}
       />
 
       <Layout>
@@ -55,7 +67,13 @@ export const Onboarding = () => {
 
           <Button
             text={activeIndex === onboardingData.length - 1 ? "Finish" : "Next"}
-            onPress={() => ref.current?.next()}
+            onPress={() => {
+              if (activeIndex === onboardingData.length - 1) {
+                onFinishedOnboarding();
+              } else {
+                ref.current?.next()
+              }
+            }}
             containerStyle={{
               marginTop: 32,
               marginBottom: 36,

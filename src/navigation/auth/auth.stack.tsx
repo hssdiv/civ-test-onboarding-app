@@ -9,7 +9,7 @@ export type AuthScreens = {
 
 const Stack = createNativeStackNavigator<AuthScreens>();
 
-export type AuthScreensNavigation = NativeStackNavigationProp<AuthScreens>;
+export type AuthNavigation = NativeStackNavigationProp<AuthScreens>;
 
 export const AuthStack = () => {
   return (
