@@ -18,8 +18,11 @@ export const Onboarding = () => {
 
   return (
     <Background>
+      <Header
+        rightComponent={() => <ButtonSecondary text="Skip" onPress={() => { }} />}
+      />
+
       <Layout>
-        <Header rightComponent={() => <ButtonSecondary text="Skip" onPress={() => {}} />} />
 
         <SvgUri
           width="100%"

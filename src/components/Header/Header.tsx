@@ -24,38 +24,42 @@ export const Header = ({
         paddingHorizontal: 10,
       }}
     >
-      {leftComponent ? (
-        <View
-          style={{
-            flex: 1,
-            alignItems: 'flex-end',
-            justifyContent: 'center',
-          }}
-        >
-          {leftComponent()}
-        </View>
-      ) : null}
 
       <View
         style={{
           flex: 1,
+          alignItems: 'flex-start',
+        }}
+      >
+        {leftComponent?.()}
+      </View>
+
+      <View
+        style={{
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
           flexDirection: 'row',
         }}
       >
-        <Text>{title}</Text>
+        <Text
+          style={{ fontSize: 16 }}
+        >
+          {title}
+        </Text>
       </View>
 
-      {rightComponent ? (
-        <View
-          style={{
-            flex: 1,
-            alignItems: 'flex-end',
-            justifyContent: 'center',
-          }}
-        >
-          {rightComponent()}
-        </View>
-      ) : null}
+
+      <View
+        style={{
+          flex: 1,
+          alignItems: 'flex-end',
+          justifyContent: 'center',
+        }}
+      >
+        {rightComponent?.()}
+      </View>
+
     </View>
   );
 };
