@@ -11,7 +11,11 @@ export const RootStack = () => {
 
   return (
     <View style={{ flex: 1, width: '100%' }}>
-      <Stack.Navigator>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false
+        }}
+      >
         {isAuthorized ?
           <Stack.Screen name="App" component={AppStack} /> :
           <Stack.Screen name="Auth" component={AuthStack} />}

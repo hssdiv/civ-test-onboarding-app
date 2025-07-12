@@ -10,7 +10,11 @@ export type AppScreensNavigation = NativeStackNavigationProp<AppScreens>;
 
 export const AppStack = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false
+      }}
+    >
       <Stack.Screen name="Account" component={Account} />
     </Stack.Navigator>
   );
