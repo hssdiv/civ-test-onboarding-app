@@ -1,6 +1,5 @@
 import { Image, View } from 'react-native';
 import { Background, Button, ButtonSmall, Header, Layout } from '../../../components';
-import { SvgUri } from 'react-native-svg';
 import { OnboardingCarousel } from './components';
 import { useRef, useState } from 'react';
 import { ICarouselInstance } from 'react-native-reanimated-carousel';
@@ -37,21 +36,15 @@ export const Onboarding = () => {
         />}
       />
 
+      <Image
+        source={require('../../../../assets/files/Onboarding.png')}
+        style={{
+          width: '100%',
+          height: "43%",
+        }}
+      />
+
       <Layout>
-
-        <SvgUri
-          width="100%"
-          height="43%"
-          style={{
-            flex: 1,
-          }}
-          uri={
-            Image.resolveAssetSource(
-              require('../../../../assets/files/Onboarding.svg'),
-            ).uri
-          }
-        />
-
         <View
           style={{
             backgroundColor: colors.backgroundSecondary,
