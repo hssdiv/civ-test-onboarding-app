@@ -5,7 +5,6 @@ import {
   ViewStyle,
   TextInputProps,
   StyleProp,
-  Image,
 } from 'react-native';
 
 import { Text } from '../Text';
@@ -78,6 +77,7 @@ export const PasswordField = ({
               style={[
                 {
                   flex: 1,
+                  padding: 0,
                   paddingEnd: 30,
                   color: colors.text,
                 },

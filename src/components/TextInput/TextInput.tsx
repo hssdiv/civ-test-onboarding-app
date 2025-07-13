@@ -63,7 +63,7 @@ export const TextInput = ({
           placeholderTextColor={colors.textTetriary}
           value={value}
           style={{
-            paddingRight: 10,
+            padding: 0,
             color: colors.text,
             fontWeight: '500',
           }}
