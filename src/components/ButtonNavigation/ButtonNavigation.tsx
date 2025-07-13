@@ -2,6 +2,7 @@ import { Image, Platform, Pressable, PressableProps, View } from 'react-native';
 import { useColors } from '../../styles';
 import { useState } from 'react';
 import { SvgUri } from 'react-native-svg';
+import { useNavigation } from '@react-navigation/native';
 
 export const ButtonNavigation = ({
   onPress,
@@ -10,6 +11,8 @@ export const ButtonNavigation = ({
 
   const colors = useColors();
   const [minHeight] = useState(32)
+
+  const navigation = useNavigation();
 
   return (
     <View
@@ -22,7 +25,7 @@ export const ButtonNavigation = ({
       ]}
     >
       <Pressable
-        onPress={onPress}
+        onPress={onPress || (() => navigation.goBack() )}
         android_ripple={{
           color: 'rgba(0, 0, 0, 0.4)',
         }}
