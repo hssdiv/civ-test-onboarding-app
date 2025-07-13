@@ -41,7 +41,7 @@ export const OnboardingCarousel = ({
               style={{
                 textAlign: "center",
                 fontSize: 24,
-                color: colors.primary,
+                color: colors.titlePrimary,
                 fontWeight: 'bold',
                 marginBottom: 16,
               }}>
