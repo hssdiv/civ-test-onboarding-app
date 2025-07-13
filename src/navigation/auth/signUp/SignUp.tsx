@@ -13,6 +13,7 @@ interface CreateAccountForm {
   name: string;
   email: string;
   password: string;
+  terms: boolean;
 }
 
 export const SignUp = () => {
@@ -50,6 +51,7 @@ export const SignUp = () => {
       name: '',
       email: '',
       password: '',
+      terms: false,
     },
   });
 
@@ -127,6 +129,7 @@ export const SignUp = () => {
 
           <Controller
             control={control}
+            name="password"
             rules={{
               required: 'Provide Password',
               minLength: {
@@ -149,21 +152,31 @@ export const SignUp = () => {
                 }}
               />
             )}
-            name="password"
           />
 
-          <CheckboxText
-            component={<Text>
-              By signing up, you agree to the{' '}
-              <Text
-                style={{ color: colors.primary }}
-                onPress={() => safeOpenURL('https://example.com')}
-              >
-                Terms of Service and Privacy Policy
-              </Text>
-            </Text>}
-            checked={checked}
-            onChange={setChecked}
+          <Controller
+            control={control}
+            name="terms"
+            rules={{
+              required: 'Accept Terms of Service and Privacy Policy',
+              validate: (value) => Boolean(value),
+            }}
+            render={({ field: { onChange, value } }) => (
+              <CheckboxText
+                component={<Text>
+                  By signing up, you agree to the{' '}
+                  <Text
+                    style={{ color: colors.primary }}
+                    onPress={() => safeOpenURL('https://example.com')}
+                  >
+                    Terms of Service and Privacy Policy
+                  </Text>
+                </Text>}
+                checked={value}
+                onChange={onChange}
+                error={errors.terms?.message}
+              />
+            )}
           />
         </KeyboardAwareScrollView>
 

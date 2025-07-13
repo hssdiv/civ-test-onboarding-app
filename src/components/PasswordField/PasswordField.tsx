@@ -71,6 +71,7 @@ export const PasswordField = ({
           }}
         >
           <TextInput
+            hitSlop={{ top: 30, bottom: 30, right: 30, left: 30 }}
             ref={innerRef}
             testID="password"
             style={[

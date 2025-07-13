@@ -56,6 +56,7 @@ export const TextInput = ({
           </Text>
         ) : null}
         <RNTextInput
+          hitSlop={{ top: 30, bottom: 30, right: 30, left: 30 }}
           ref={innerRef}
           placeholder={placeholder}
           value={value}
