@@ -4,6 +4,7 @@ import {
   TextProps,
   TextStyle,
 } from 'react-native';
+import { useColors } from '../../styles';
 
 interface TextProperties {
   text?: string;
@@ -20,9 +21,12 @@ export const Text = ({
 }: TextProperties & TextProps) => {
   let content = text || children;
 
+  const colors = useColors();
+
   return (
     <ReactNativeText
       style={[
+        { color: colors.text },
         ...(Array.isArray(style) ? style : [style]),
       ]}
       {...rest}
