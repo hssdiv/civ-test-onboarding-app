@@ -5,9 +5,11 @@ import { Transaction } from '../../../../../types';
 import { TransactionItem } from './TransactionItem';
 
 export const AccountTransactions = ({
-  transactions
+  transactions,
+  currency = '',
 }: {
   transactions?: Transaction[]
+  currency?: string;
 }) => {
   const colors = useColors();
 
@@ -26,9 +28,13 @@ export const AccountTransactions = ({
 
       {transactions?.map((transaction, index) => (
         <TransactionItem
-          key={transaction.id}
+          key={index}
           transaction={transaction}
-          containerStyle={{ marginTop: index === 0 ? 24 : 0, paddingBottom: 24 }}
+          currency={currency}
+          containerStyle={{
+            marginTop: index === 0 ? 24 : 0,
+            paddingBottom: 24,
+          }}
         />
       ))}
     </View>

@@ -22,7 +22,7 @@ export const AccountInfo = ({
     >
       <AccountInfoItem
         name="Type of account"
-        value={accountData?.type}
+        value={accountData?.accountType}
       />
       <AccountInfoItem
         name="Account No"
@@ -34,12 +34,12 @@ export const AccountInfo = ({
 
       <AccountInfoItem
         name="Avaliable Balance"
-        value={(accountData?.currency || '') + formatPrice(accountData?.balance)}
+        value={(accountData?.currency || '') + formatPrice(accountData?.availableBalance)}
         style={{
           paddingTop: 16,
         }}
-        valueTextStyle={Number.isInteger(accountData?.balance) &&
-          Number(accountData?.balance) > 0 ?
+        valueTextStyle={Number.isInteger(accountData?.availableBalance) &&
+          Number(accountData?.availableBalance) > 0 ?
           {
             color: colors.systemSucceess,
           }
@@ -49,7 +49,7 @@ export const AccountInfo = ({
 
       <AccountInfoItem
         name="Date added"
-        value={accountData?.created_at}
+        value={accountData?.dateAdded}
         style={{
           paddingTop: 16,
         }}

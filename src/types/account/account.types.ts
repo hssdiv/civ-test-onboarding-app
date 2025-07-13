@@ -1,18 +1,16 @@
 export interface Transaction {
-      id: number;
-      from: string;
-      bank: string;
-      date: string;
-      balance: number;
-      currency: string;
-    }
+  name: string;
+  bank: string;
+  time: string;
+  amount: number;
+}
 
 export interface AccountData {
   id: number;
   bank: string;
-  type: string;
-  balance: number;
+  accountType: string;
+  availableBalance: number;
   currency: string;
-  created_at: string;
+  dateAdded: string;
   transactions: Transaction[];
 }

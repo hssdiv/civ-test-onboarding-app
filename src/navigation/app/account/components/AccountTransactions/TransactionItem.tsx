@@ -6,9 +6,11 @@ import { useColors } from '../../../../../styles';
 
 export const TransactionItem = ({
   transaction,
+  currency,
   containerStyle,
 }: {
   transaction: Transaction
+  currency: string;
   containerStyle?: ViewStyle;
 }) => {
 
@@ -48,7 +50,7 @@ export const TransactionItem = ({
               color: colors.systemPrimary,
             }}
           >
-            {transaction?.from?.substring(0, 1)}
+            {transaction?.name?.substring(0, 1)}
           </Text>
         </View>
 
@@ -69,7 +71,7 @@ export const TransactionItem = ({
                 fontWeight: '600',
               }}
             >
-              {transaction?.from}
+              {transaction?.name}
             </Text>
             <Text
               style={{
@@ -77,17 +79,17 @@ export const TransactionItem = ({
                 opacity: 0.5,
               }}
             >
-              {transaction?.bank + ' ' + transaction?.date}
+              {transaction?.bank + ' ' + transaction?.time}
             </Text>
           </View>
 
           <Text
             style={{
               fontWeight: 500,
-              color: transaction.balance > 0 ? colors.systemSucceess : colors.text
+              color: transaction.amount > 0 ? colors.systemSucceess : colors.text
             }}
           >
-            {transaction.currency + formatPrice(transaction.balance)}
+            {`${transaction.amount < 0 ? '-' : ''}${currency}${formatPrice(Math.abs(transaction.amount))}`}
           </Text>
         </View>
       </View>

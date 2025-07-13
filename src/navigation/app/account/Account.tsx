@@ -68,6 +68,7 @@ export const Account = () => {
 
           <AccountTransactions
             transactions={accountData?.transactions}
+            currency={accountData?.currency}
           />
         </Layout>
       </ScrollView>
