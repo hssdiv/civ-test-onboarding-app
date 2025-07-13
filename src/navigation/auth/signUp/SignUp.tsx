@@ -144,9 +144,9 @@ export const SignUp = () => {
                 error={errors.password?.message}
                 labelText="Password"
                 style={{ borderColor: colors.primary }}
-                // containerStyle={{
-                //   marginBottom: 16,
-                // }}
+                containerStyle={{
+                  marginBottom: 32,
+                }}
               />
             )}
             name="password"
@@ -165,24 +165,38 @@ export const SignUp = () => {
             checked={checked}
             onChange={setChecked}
           />
-
-
-          <View>
-            <Text>Already have an account?{' '}
-              <Text
-                style={{ color: colors.primary }}
-                onPress={() => {
-                  Alert.alert('navigation to sign in')
-                  // navigation.navigate('signIn')
-                }}
-              >
-                Sign in
-              </Text>
-            </Text>
-
-            <Button text="Create account" onPress={handleSubmit(onSubmit)} />
-          </View>
         </KeyboardAwareScrollView>
+
+
+        <View
+          style={{
+            flex: 1,
+          }}
+        >
+          <Text
+            style={{
+              textAlign: 'center',
+            }}
+          >Already have an account?{' '}
+            <Text
+              style={{ color: colors.primary }}
+              onPress={() => {
+                Alert.alert('navigation to sign in')
+                // navigation.navigate('signIn')
+              }}
+            >
+              Sign in
+            </Text>
+          </Text>
+
+          <Button
+            text="Create account"
+            onPress={handleSubmit(onSubmit)}
+            containerStyle={{
+              marginTop: 16,
+            }}
+          />
+        </View>
       </Layout>
     </Background>
   );

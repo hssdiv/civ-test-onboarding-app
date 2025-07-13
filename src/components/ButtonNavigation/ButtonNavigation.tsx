@@ -10,7 +10,6 @@ export const ButtonNavigation = ({
 }: PressableProps) => {
 
   const colors = useColors();
-  const [minHeight] = useState(32)
 
   const navigation = useNavigation();
 
@@ -19,7 +18,6 @@ export const ButtonNavigation = ({
       style={[
         {
           borderRadius: 16,
-          minHeight,
           overflow: 'hidden'
         },
       ]}
@@ -31,7 +29,7 @@ export const ButtonNavigation = ({
         }}
         style={({ pressed }) => ({
           backgroundColor: Platform.OS === 'ios' ? pressed ? 'lightgrey' : colors.buttonSmall : colors.buttonSmall,
-          padding: (minHeight - 20) / 2,
+          padding: 8,
           justifyContent: 'center',
           alignItems: 'center',
         })}

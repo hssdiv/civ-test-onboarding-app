@@ -32,30 +32,29 @@ export const TextInput = ({
 
   return (
     <View
-      style={[
-        {
+      style={containerStyle}
+    >
+      <View
+        style={{
           paddingVertical: 12,
           paddingHorizontal: 20,
           backgroundColor: colors.backgroundSecondary,
           borderRadius: 10,
           borderWidth: error ? 1 : 0,
           borderColor: error ? colors.danger : colors.primary,
-        },
-        containerStyle,
-      ]}
-    >
-      {label ? (
-        <Text
-          style={{
-            fontSize: 10,
-            color: colors.textTetriary,
-            marginBottom: 8,
-          }}
-        >
-          {label}
-        </Text>
-      ) : null}
-      <View>
+        }}
+      >
+        {label ? (
+          <Text
+            style={{
+              fontSize: 10,
+              color: colors.textTetriary,
+              marginBottom: 8,
+            }}
+          >
+            {label}
+          </Text>
+        ) : null}
         <RNTextInput
           ref={innerRef}
           placeholder={placeholder}
@@ -67,17 +66,17 @@ export const TextInput = ({
           numberOfLines={1}
           {...rest}
         />
-        {error ? (
-          <Text
-            style={{
-              paddingTop: 4,
-              color: colors.danger
-            }}
-          >
-            {error}
-          </Text>
-        ) : null}
       </View>
+      {error ? (
+        <Text
+          style={{
+            paddingTop: 4,
+            color: colors.danger
+          }}
+        >
+          {error}
+        </Text>
+      ) : null}
     </View>
   );
 };

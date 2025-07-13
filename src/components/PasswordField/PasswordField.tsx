@@ -23,6 +23,7 @@ interface PasswordFieldProps {
   style?: StyleProp<ViewStyle>;
   error?: string;
   errorTx?: string;
+  containerStyle?: ViewStyle;
 }
 
 export const PasswordField = ({
@@ -35,74 +36,79 @@ export const PasswordField = ({
   onBlur,
   style,
   error,
+  containerStyle,
   ...rest
 }: PasswordFieldProps & TextInputProps) => {
   const colors = useColors();
 
   return (
     <View
-      style={{
-        paddingVertical: 12,
-        paddingHorizontal: 20,
-        backgroundColor: colors.backgroundSecondary,
-        borderRadius: 10,
-        borderWidth: error ? 1 : 0,
-        borderColor: error ? colors.danger : colors.primary,
-      }}
+      style={containerStyle}
     >
-      {labelText ? (
-        <Text
-          style={{
-            fontSize: 10,
-            color: colors.textTetriary,
-            marginBottom: 8,
-          }}
-          text={labelText}
-        />
-      ) : null}
       <View
         style={{
-          justifyContent: 'center',
+          paddingVertical: 12,
+          paddingHorizontal: 20,
+          backgroundColor: colors.backgroundSecondary,
+          borderRadius: 10,
+          borderWidth: error ? 1 : 0,
+          borderColor: error ? colors.danger : colors.primary,
         }}
       >
-        <TextInput
-          ref={innerRef}
-          testID="password"
-          style={[
-            {
-              paddingEnd: 30,
-            },
-            style,
-          ]}
-          placeholder={'Enter Password'}
-          placeholderTextColor={colors.textTetriary}
-          value={value}
-          onChangeText={setValue}
-          secureTextEntry={secure}
-          autoCapitalize="none"
-          {...rest}
-        />
-        <TouchableOpacity
-          onPress={() => {
-            setSecure((prev) => !prev);
-          }}
-          hitSlop={{ top: 15, bottom: 15, right: 15 }}
+        {labelText ? (
+          <Text
+            style={{
+              fontSize: 10,
+              color: colors.textTetriary,
+              marginBottom: 8,
+            }}
+            text={labelText}
+          />
+        ) : null}
+        <View
           style={{
-            position: 'absolute',
-            right: 5,
+            justifyContent: 'center',
           }}
         >
-          <SvgUri
-            width={24}
-            height={24}
-            // secure
-            uri={
-              Image.resolveAssetSource(
-                require('../../../assets/files/Show.svg'),
-              ).uri
-            }
+          <TextInput
+            ref={innerRef}
+            testID="password"
+            style={[
+              {
+                paddingEnd: 30,
+              },
+              style,
+            ]}
+            placeholder={'Enter Password'}
+            placeholderTextColor={colors.textTetriary}
+            value={value}
+            onChangeText={setValue}
+            secureTextEntry={secure}
+            autoCapitalize="none"
+            {...rest}
           />
-        </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              setSecure((prev) => !prev);
+            }}
+            hitSlop={{ top: 15, bottom: 15, right: 15 }}
+            style={{
+              position: 'absolute',
+              right: 5,
+            }}
+          >
+            <SvgUri
+              width={24}
+              height={24}
+              // secure
+              uri={
+                Image.resolveAssetSource(
+                  require('../../../assets/files/Show.svg'),
+                ).uri
+              }
+            />
+          </TouchableOpacity>
+        </View>
       </View>
       {error ? (
         <Text style={{ color: colors.danger }}>{error}</Text>

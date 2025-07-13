@@ -16,15 +16,12 @@ export const Button = ({
 
   const colors = useColors();
 
-  const [minHeight] = useState(56)
-
   return (
     <View
       style={[
         {
           overflow: 'hidden',
           borderRadius: 30,
-          minHeight,
         },
         containerStyle,
       ]}

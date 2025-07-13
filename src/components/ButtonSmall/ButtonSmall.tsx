@@ -16,15 +16,12 @@ export const ButtonSmall = ({
 
   const colors = useColors();
 
-  const [minHeight] = useState(33)
-
   return (
     <View
       style={[
         {
           overflow: 'hidden',
           borderRadius: 30,
-          minHeight,
         },
         containerStyle,
       ]}
@@ -36,7 +33,7 @@ export const ButtonSmall = ({
         }}
         style={({ pressed }) => ({
           backgroundColor: Platform.OS === 'ios' ? pressed ? 'lightgrey' : colors.buttonSmall : colors.buttonSmall,
-          paddingVertical: (minHeight - PixelRatio.getFontScale() * 14) / 2,
+          paddingVertical: 8,
           paddingHorizontal: 16,
           justifyContent: 'center',
           alignItems: 'center',
