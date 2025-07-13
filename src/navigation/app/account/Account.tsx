@@ -40,7 +40,12 @@ export const Account = () => {
         }}
       >
         <Layout>
-          <View style={{ alignItems: 'center' }}>
+          <View
+            style={{
+              alignItems: 'center',
+              marginTop: 28,
+            }}
+          >
             <SvgUri
               width={48}
               height={48}

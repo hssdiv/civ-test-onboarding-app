@@ -1,5 +1,6 @@
 import { TextStyle, View, ViewStyle } from 'react-native';
 import { Text } from '../../../../../components';
+import { useColors } from '../../../../../styles';
 
 export const AccountInfoItem = ({
   name,
@@ -13,6 +14,7 @@ export const AccountInfoItem = ({
   valueTextStyle?: TextStyle;
 }) => {
 
+  const colors = useColors();
   return (
     <View
       style={[
@@ -23,8 +25,16 @@ export const AccountInfoItem = ({
         style
       ]}
     >
-      <Text>{name}</Text>
-      <Text style={valueTextStyle}>{value || ''}</Text>
+      <Text
+        style={{
+          color: colors.textSecondary,
+        }}
+      >
+        {name}
+      </Text>
+      <Text style={[
+        valueTextStyle
+      ]}>{value || ''}</Text>
     </View>
   );
 };

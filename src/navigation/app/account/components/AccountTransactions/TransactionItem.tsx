@@ -43,7 +43,11 @@ export const TransactionItem = ({
             marginEnd: 12
           }}
         >
-          <Text>
+          <Text
+            style={{
+              color: colors.systemPrimary,
+            }}
+          >
             {transaction?.from?.substring(0, 1)}
           </Text>
         </View>
@@ -63,7 +67,6 @@ export const TransactionItem = ({
             <Text
               style={{
                 fontWeight: '600',
-                color: colors.text,
               }}
             >
               {transaction?.from}

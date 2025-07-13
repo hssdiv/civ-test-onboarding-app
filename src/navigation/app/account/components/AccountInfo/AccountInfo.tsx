@@ -38,6 +38,13 @@ export const AccountInfo = ({
         style={{
           paddingTop: 16,
         }}
+        valueTextStyle={Number.isInteger(accountData?.balance) &&
+          Number(accountData?.balance) > 0 ?
+          {
+            color: colors.systemSucceess,
+          }
+          :
+          undefined}
       />
 
       <AccountInfoItem
