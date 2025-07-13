@@ -42,11 +42,23 @@ export const PasswordField = ({
   return (
     <View
       style={{
-        marginBottom: 15,
+        paddingVertical: 12,
+        paddingHorizontal: 20,
+        backgroundColor: colors.backgroundSecondary,
+        borderRadius: 10,
+        borderWidth: error ? 1 : 0,
+        borderColor: error ? colors.danger : colors.primary,
       }}
     >
       {labelText ? (
-        <Text style={{}} text={labelText} />
+        <Text
+          style={{
+            fontSize: 10,
+            color: colors.textTetriary,
+            marginBottom: 8,
+          }}
+          text={labelText}
+        />
       ) : null}
       <View
         style={{
@@ -58,11 +70,9 @@ export const PasswordField = ({
           testID="password"
           style={[
             {
-              marginBottom: 0,
-              paddingEnd: 25,
+              paddingEnd: 30,
             },
             style,
-            error && { borderColor: colors.danger },
           ]}
           placeholder={'Enter Password'}
           placeholderTextColor={colors.textTetriary}
