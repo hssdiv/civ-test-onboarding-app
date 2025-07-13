@@ -3,6 +3,7 @@ import {
   TextInput as RNTextInput,
   View,
   TextInputProps,
+  ViewStyle,
 } from 'react-native';
 import { useColors } from '../../styles';
 
@@ -14,6 +15,7 @@ interface TextInputProperties {
   placeholder?: string;
   error?: string;
   rest?: TextInputProps;
+  containerStyle?: ViewStyle;
 }
 
 export const TextInput = ({
@@ -23,45 +25,59 @@ export const TextInput = ({
   onChangeText,
   placeholder,
   error,
+  containerStyle,
   ...rest
 }: TextInputProperties & TextInputProps) => {
   const colors = useColors();
 
   return (
-    <>
+    <View
+      style={[
+        {
+          paddingVertical: 12,
+          paddingHorizontal: 20,
+          backgroundColor: colors.backgroundSecondary,
+          borderRadius: 10,
+          borderWidth: error ? 1 : 0,
+          borderColor: error ? colors.danger : colors.primary,
+        },
+        containerStyle,
+      ]}
+    >
       {label ? (
-        <Text style={{}}>
+        <Text
+          style={{
+            fontSize: 10,
+            color: colors.textTetriary,
+            marginBottom: 8,
+          }}
+        >
           {label}
         </Text>
       ) : null}
-      <View
-        style={{
-          marginBottom: 6,
-        }}
-      >
+      <View>
         <RNTextInput
           ref={innerRef}
           placeholder={placeholder}
           value={value}
-          style={[
-            {
-              width: '100%',
-              minHeight: 40,
-              paddingLeft: 10,
-              paddingRight: 10,
-            },
-            {
-              borderColor: error ? colors.danger : colors.primary,
-            },
-          ]}
+          style={{
+            paddingRight: 10,
+          }}
           onChangeText={onChangeText}
           numberOfLines={1}
           {...rest}
         />
         {error ? (
-          <Text style={{ color: colors.danger }}>{error}</Text>
+          <Text
+            style={{
+              paddingTop: 4,
+              color: colors.danger
+            }}
+          >
+            {error}
+          </Text>
         ) : null}
       </View>
-    </>
+    </View>
   );
 };
