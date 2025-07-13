@@ -46,16 +46,18 @@ export const SignUp = () => {
   return (
     <Background>
       <Header
-        leftComponent={() => <ButtonNavigation
-          onPress={() => {
-            navigation.reset({
-              index: 1,
-              routes: [
-                { name: 'Onboarding' },
-              ],
-            });
-          }}
-        />}
+        leftComponent={() => (
+          <ButtonNavigation
+            onPress={() => {
+              navigation.reset({
+                index: 1,
+                routes: [
+                  { name: 'Onboarding' },
+                ],
+              });
+            }}
+          />
+        )}
       />
       <Layout>
         <KeyboardAwareScrollView
