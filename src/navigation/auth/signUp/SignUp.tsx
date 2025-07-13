@@ -18,6 +18,7 @@ export const SignUp = () => {
   const [securePassword, setSecurePassword] = useState(true);
 
   const signUp = useAuth(store => store.signUp);
+  const setToken = useAuth(store => store.setToken);
   const loading = useAuth(store => store.loading);
 
   const onSubmit = async (data: CreateAccountForm) => {
@@ -192,8 +193,9 @@ export const SignUp = () => {
             <Text
               style={{ color: colors.primary }}
               onPress={() => {
-                Alert.alert('navigation to sign in')
+                Alert.alert('should navigate to signIn screen', 'for now using for quick login')
                 // navigation.navigate('signIn')
+                setToken('test123')
               }}
             >
               Sign in

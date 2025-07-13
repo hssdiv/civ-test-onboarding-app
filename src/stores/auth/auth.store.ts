@@ -11,6 +11,7 @@ interface AuthStore {
   onboardingFinished: boolean;
   onFinishedOnboarding: () => void;
   token: string;
+  setToken: (newToken: string) => void;
   signUp: (data: CreateAccountForm) => Promise<string>;
   signOut: () => void;
 }
@@ -24,6 +25,7 @@ export const useAuth = create<AuthStore>()(
         set({ onboardingFinished: true })
       },
       token: '',
+      setToken: (newToken) => set({ token: newToken }),
       signUp: async (data: CreateAccountForm) => {
         try {
           set({ loading: true });
@@ -54,7 +56,7 @@ export const useAuth = create<AuthStore>()(
           title: 'Logout?',
           // message: 'Are you sure you want to logout?',
           callback: async () => {
-              set({ token: '' });
+            set({ token: '' });
           },
         });
       },
