@@ -1,37 +1,30 @@
 import { Alert, View } from 'react-native';
 import { Background, Button, ButtonNavigation, CheckboxText, Header, Layout, PasswordField, Text, TextInput } from '../../../components';
-import { EMAIL_REGEX, safeOpenURL } from '../../../helper';
+import { EMAIL_REGEX, safeOpenURL, showToast } from '../../../helper';
 import { useColors } from '../../../styles';
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { AuthNavigation } from '../auth.stack';
 import { Controller, useForm } from 'react-hook-form';
-import { AuthApi } from '../../../services';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { CreateAccountForm } from '../../../types';
+import { useAuth } from '../../../stores';
 
 export const SignUp = () => {
   const colors = useColors();
-
-  const [loading, setLoading] = useState(false);
-
-  const [checked, setChecked] = useState(false)
 
   const navigation = useNavigation<AuthNavigation>();
 
   const [securePassword, setSecurePassword] = useState(true);
 
+  const signUp = useAuth(store => store.signUp);
+  const loading = useAuth(store => store.loading);
+
   const onSubmit = async (data: CreateAccountForm) => {
-    try {
-      console.log(data)
-      setLoading(true);
-      // const result = await AuthApi.signUp(data);
-      // console.log(result);
-      // showToast({ description: 'Account successfully created' });
-    } catch (error) {
-      // showToast({ error });
-    } finally {
-      setLoading(false);
+    console.log('signup form data: ', data)
+    const result = await signUp(data);
+    if (result) {
+      showToast({ description: 'Account successfully created' });
     }
   };
 
@@ -209,6 +202,7 @@ export const SignUp = () => {
 
           <Button
             text="Create account"
+            loading={loading}
             onPress={handleSubmit(onSubmit)}
             containerStyle={{
               marginTop: 16,

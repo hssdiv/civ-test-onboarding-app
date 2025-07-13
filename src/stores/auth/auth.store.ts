@@ -11,7 +11,7 @@ interface AuthStore {
   onboardingFinished: boolean;
   onFinishedOnboarding: () => void;
   token: string;
-  signUp: (data: any) => Promise<string>;
+  signUp: (data: CreateAccountForm) => Promise<string>;
   signOut: () => void;
 }
 
@@ -29,11 +29,13 @@ export const useAuth = create<AuthStore>()(
           set({ loading: true });
 
           const result = await AuthApi.signUp(data);
-          const token = result?.token || '';
+          console.log('signup result: ', result)
+          // const token = result?.token || '';
+          const fakeToken = Math.random().toString()
 
-          set({ token });
+          set({ token: fakeToken });
 
-          return token;
+          return fakeToken;
         } catch (error: any) {
           console.log('signup error:');
           console.log(error?.message);
@@ -44,6 +46,7 @@ export const useAuth = create<AuthStore>()(
         } finally {
           set({ loading: false });
         }
+        return ''
       },
       signOut: () => {
         set({ token: '' });

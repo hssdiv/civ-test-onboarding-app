@@ -1,4 +1,4 @@
-import { Platform, Pressable, PressableProps, View, ViewStyle } from 'react-native';
+import { ActivityIndicator, Platform, Pressable, PressableProps, View, ViewStyle } from 'react-native';
 import { Text } from '../Text';
 import { useColors } from '../../styles';
 import { useState } from 'react';
@@ -6,11 +6,13 @@ import { useState } from 'react';
 export const Button = ({
   text,
   onPress,
+  loading,
   containerStyle,
   style,
   ...rest
 }: {
   text: string;
+  loading?: boolean;
   containerStyle?: ViewStyle;
 } & PressableProps) => {
 
@@ -41,15 +43,17 @@ export const Button = ({
         hitSlop={{ top: 10, bottom: 10, right: 10, left: 10 }}
         {...rest}
       >
-        <Text
-          style={{
-            fontSize: 16,
-            lineHeight: 24,
-            color: colors.textInverted,
-          }}
-        >
-          {text}
-        </Text>
+        {loading ? <ActivityIndicator animating /> :
+          <Text
+            style={{
+              fontSize: 16,
+              lineHeight: 24,
+              color: colors.textInverted,
+            }}
+          >
+            {text}
+          </Text>
+        }
       </Pressable>
     </View>
   );
