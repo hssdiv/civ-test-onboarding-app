@@ -79,6 +79,7 @@ export const CheckboxText = ({
               <Text
                 style={{
                   color: colors.text,
+                  fontWeight: '500',
                 }}
               >
                 {text}

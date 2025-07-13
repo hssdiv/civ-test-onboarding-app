@@ -26,7 +26,10 @@ export const Text = ({
   return (
     <ReactNativeText
       style={[
-        { color: colors.text },
+        {
+          color: colors.text,
+          fontWeight: '500',
+        },
         ...(Array.isArray(style) ? style : [style]),
       ]}
       {...rest}

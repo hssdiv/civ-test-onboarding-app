@@ -58,7 +58,7 @@ export const Account = () => {
             <Text
               style={{
                 paddingTop: 17,
-                fontWeight: 'bold',
+                fontWeight: '600',
               }}>
               {accountData?.bank}
             </Text>

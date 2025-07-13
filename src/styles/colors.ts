@@ -21,6 +21,7 @@ const colors = {
     backgroundSecondary: palette.white,
     systemSucceess: 'rgba(0, 146, 24, 1)',
     systemPrimary: palette.primaryLight,
+    systemSecondary: 'rgba(187, 187, 187, 1)',
     buttonSecondaryContent: palette.black,
   },
   dark: {
@@ -38,6 +39,7 @@ const colors = {
     backgroundSecondary: 'rgba(58, 39, 98, 1)',
     systemSucceess: 'rgba(96, 199, 113, 1)',
     systemPrimary: palette.white,
+    systemSecondary: 'rgba(80, 63, 116, 1)',
     buttonSecondaryContent: palette.white,
   },
 };

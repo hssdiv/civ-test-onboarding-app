@@ -32,7 +32,6 @@ export const OnboardingCarousel = ({
         renderItem={({ item }) => (
           <View
             style={{
-              flex: 1,
               justifyContent: "center",
               paddingHorizontal: 24
             }}
@@ -42,13 +41,16 @@ export const OnboardingCarousel = ({
                 textAlign: "center",
                 fontSize: 24,
                 color: colors.titlePrimary,
-                fontWeight: 'bold',
+                fontWeight: '700',
                 marginBottom: 16,
               }}>
               {item.title}
             </Text>
             <Text
-              style={{ textAlign: "center" }}
+              style={{
+                textAlign: "center",
+                color: colors.textSecondary,
+              }}
             >
               {item.description}
             </Text>

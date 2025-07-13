@@ -67,7 +67,6 @@ export const SignUp = () => {
             style={{
               marginTop: 36,
               fontSize: 32,
-              fontWeight: 'bold',
               color: colors.titlePrimary,
             }}
           >

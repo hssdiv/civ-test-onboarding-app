@@ -31,14 +31,14 @@ export const OnboardingCarouselPagination = ({
         width: 6,
         height: 6,
         borderRadius: 16,
-        backgroundColor: 'rgba(187, 187, 187, 1)',
+        backgroundColor: colors.systemSecondary,
       }}
       activeDotStyle={{
         borderRadius: 8,
         width: 6,
         height: 18,
         overflow: "hidden",
-        backgroundColor: colors.primary,
+        backgroundColor: colors.systemPrimary,
       }}
       containerStyle={{
         gap: 5,

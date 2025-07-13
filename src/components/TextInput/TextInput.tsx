@@ -50,6 +50,7 @@ export const TextInput = ({
               fontSize: 10,
               color: colors.textTetriary,
               marginBottom: 8,
+              fontWeight: '600',
             }}
           >
             {label}
@@ -59,10 +60,12 @@ export const TextInput = ({
           hitSlop={{ top: 30, bottom: 30, right: 30, left: 30 }}
           ref={innerRef}
           placeholder={placeholder}
+          placeholderTextColor={colors.textTetriary}
           value={value}
           style={{
             paddingRight: 10,
             color: colors.text,
+            fontWeight: '500',
           }}
           onChangeText={onChangeText}
           numberOfLines={1}
