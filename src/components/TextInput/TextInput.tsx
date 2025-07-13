@@ -62,6 +62,7 @@ export const TextInput = ({
           value={value}
           style={{
             paddingRight: 10,
+            color: colors.text,
           }}
           onChangeText={onChangeText}
           numberOfLines={1}
