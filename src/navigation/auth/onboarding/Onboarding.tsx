@@ -6,11 +6,14 @@ import { useRef, useState } from 'react';
 import { ICarouselInstance } from 'react-native-reanimated-carousel';
 import { getOnboardingData } from './helper';
 import { useColors } from '../../../styles';
-import { useNavigation } from '@react-navigation/native';
+import { useAuth } from '../../../stores';
 import { AuthNavigation } from '../auth.stack';
+import { useNavigation } from '@react-navigation/native';
 
 export const Onboarding = () => {
   const ref = useRef<ICarouselInstance>(null);
+
+  const onFinishedOnboarding = useAuth(store => store.onFinishedOnboarding);
 
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -20,8 +23,8 @@ export const Onboarding = () => {
 
   const navigation = useNavigation<AuthNavigation>();
 
-  const onFinishedOnboarding = () => {
-    // todo asyncstorage
+  const onFinishedOnboardingPressed = () => {
+    onFinishedOnboarding()
     navigation.navigate('SignUp')
   }
 
@@ -30,7 +33,7 @@ export const Onboarding = () => {
       <Header
         rightComponent={() => <ButtonSmall
           text="Skip"
-          onPress={onFinishedOnboarding}
+          onPress={() => onFinishedOnboardingPressed()}
         />}
       />
 
@@ -69,7 +72,7 @@ export const Onboarding = () => {
             text={activeIndex === onboardingData.length - 1 ? "Finish" : "Next"}
             onPress={() => {
               if (activeIndex === onboardingData.length - 1) {
-                onFinishedOnboarding();
+                onFinishedOnboardingPressed();
               } else {
                 ref.current?.next()
               }
