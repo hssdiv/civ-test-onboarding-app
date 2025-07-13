@@ -14,6 +14,7 @@ export const getFakeAccountData = (): AccountData => ({
       bank: 'Zenith Bank',
       date: '12:03 AM',
       balance: 2098300,
+      currency: 'N',
     },
     {
       id: 3,
@@ -21,6 +22,7 @@ export const getFakeAccountData = (): AccountData => ({
       bank: 'GT-Bank',
       date: '12:03 AM',
       balance: -98300,
+      currency: 'N',
     },
     {
       id: 2,
@@ -28,6 +30,7 @@ export const getFakeAccountData = (): AccountData => ({
       bank: 'GT-Bank',
       date: '12:03 AM',
       balance: -29800,
+      currency: 'N',
     },
     {
       id: 1,
@@ -35,6 +38,7 @@ export const getFakeAccountData = (): AccountData => ({
       bank: 'GT-Bank',
       date: '12:03 AM',
       balance: -411500,
+      currency: 'N',
     }
   ],
 })

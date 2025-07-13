@@ -1,9 +1,10 @@
-interface Transaction {
+export interface Transaction {
       id: number;
       from: string;
       bank: string;
       date: string;
       balance: number;
+      currency: string;
     }
 
 export interface AccountData {
