@@ -1,4 +1,4 @@
-import { Image, View } from 'react-native';
+import { Image, ScrollView, View } from 'react-native';
 import { Background, ButtonNavigation, ButtonSmall, Header, Layout, Text } from '../../../components';
 import { useAuth } from '../../../stores';
 import { useEffect, useState } from 'react';
@@ -22,47 +22,53 @@ export const Account = () => {
 
   return (
     <Background>
-      <Layout>
-        <Header
-          title='My Account'
-          leftComponent={() =>
-            <ButtonNavigation
-              onPress={() => signOut()}
-            />
-          }
-        // rightComponent={() =>
-        //   <ButtonSmall
-        //     text='test'
-        //     onPress={() => { }}
-        //   />
-        // }
-        />
-
-        <View style={{ alignItems: 'center' }}>
-          <SvgUri
-            width={48}
-            height={48}
-            uri={
-              Image.resolveAssetSource(
-                require('../../../../assets/files/kuda.svg'),
-              ).uri
-            }
+      <Header
+        title='My Account'
+        leftComponent={() =>
+          <ButtonNavigation
+            onPress={() => signOut()}
           />
-          <Text
-            style={{
-              paddingTop: 17,
-              fontWeight: 'bold',
-            }}>
-            {accountData?.bank}
-          </Text>
-        </View>
+        }
+      // rightComponent={() =>
+      //   <ButtonSmall
+      //     text='test'
+      //     onPress={() => { }}
+      //   />
+      // }
+      />
 
-        <AccountInfo accountData={accountData} />
+      <ScrollView
+        contentContainerStyle={{
+          paddingBottom: 200,
+        }}
+      >
+        <Layout>
+          <View style={{ alignItems: 'center' }}>
+            <SvgUri
+              width={48}
+              height={48}
+              uri={
+                Image.resolveAssetSource(
+                  require('../../../../assets/files/kuda.svg'),
+                ).uri
+              }
+            />
+            <Text
+              style={{
+                paddingTop: 17,
+                fontWeight: 'bold',
+              }}>
+              {accountData?.bank}
+            </Text>
+          </View>
 
-        <AccountTransactions
-          transactions={accountData?.transactions}
-        />
-      </Layout>
-    </Background>
+          <AccountInfo accountData={accountData} />
+
+          <AccountTransactions
+            transactions={accountData?.transactions}
+          />
+        </Layout>
+      </ScrollView>
+    </Background >
   );
 };

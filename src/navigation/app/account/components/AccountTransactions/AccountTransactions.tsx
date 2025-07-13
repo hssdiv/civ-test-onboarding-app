@@ -24,10 +24,11 @@ export const AccountTransactions = ({
         <Text>{'>'}</Text>
       </View>
 
-      {transactions?.map(transaction => (
+      {transactions?.map((transaction, index) => (
         <TransactionItem
           key={transaction.id}
           transaction={transaction}
+          containerStyle={{ marginTop: index === 0 ? 24 : 0, paddingBottom: 24 }}
         />
       ))}
     </View>

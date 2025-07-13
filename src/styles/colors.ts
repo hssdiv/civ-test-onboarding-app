@@ -3,6 +3,7 @@ import { palette } from './palette';
 
 const baseColors = {
   danger: palette.red,
+  systemSucceess: 'rgba(96, 199, 113, 1)',
 };
 
 const colors = {
