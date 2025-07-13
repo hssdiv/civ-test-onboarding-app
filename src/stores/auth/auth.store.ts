@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
-import { showToast } from '../../helper';
+import { showToast, withAlert } from '../../helper';
 import { AuthApi } from '../../services';
 import { CreateAccountForm } from '../../types';
 
@@ -49,7 +49,14 @@ export const useAuth = create<AuthStore>()(
         return ''
       },
       signOut: () => {
-        set({ token: '' });
+
+        withAlert({
+          title: 'Logout?',
+          // message: 'Are you sure you want to logout?',
+          callback: async () => {
+              set({ token: '' });
+          },
+        });
       },
     })),
     {

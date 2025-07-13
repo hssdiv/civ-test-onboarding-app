@@ -1,11 +1,22 @@
 import { View } from 'react-native';
-import { Text } from '../../../components';
+import { Background, ButtonNavigation, Header, Layout, Text } from '../../../components';
+import { useAuth } from '../../../stores';
 
 export const Account = () => {
+  const signOut = useAuth(store => store.signOut);
 
   return (
-    <View>
-      <Text>Account</Text>
-    </View>
+    <Background>
+      <Layout>
+        <Header
+          title='My Account'
+          leftComponent={() =>
+            <ButtonNavigation
+              onPress={() => signOut()}
+            />
+          }
+        />
+      </Layout>
+    </Background>
   );
 };
