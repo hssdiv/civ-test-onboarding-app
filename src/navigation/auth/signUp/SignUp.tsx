@@ -8,13 +8,7 @@ import { AuthNavigation } from '../auth.stack';
 import { Controller, useForm } from 'react-hook-form';
 import { AuthApi } from '../../../services';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-
-interface CreateAccountForm {
-  name: string;
-  email: string;
-  password: string;
-  terms: boolean;
-}
+import { CreateAccountForm } from '../../../types';
 
 export const SignUp = () => {
   const colors = useColors();
@@ -57,7 +51,18 @@ export const SignUp = () => {
 
   return (
     <Background>
-      <Header leftComponent={() => <ButtonNavigation />} />
+      <Header
+        leftComponent={() => <ButtonNavigation
+          onPress={() => {
+            navigation.reset({
+              index: 1,
+              routes: [
+                { name: 'Onboarding' },
+              ],
+            });
+          }}
+        />}
+      />
       <Layout>
         <KeyboardAwareScrollView
           enableResetScrollToCoords={false}
