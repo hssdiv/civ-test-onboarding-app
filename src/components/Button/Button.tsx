@@ -1,7 +1,6 @@
 import { ActivityIndicator, Platform, Pressable, PressableProps, View, ViewStyle } from 'react-native';
 import { Text } from '../Text';
 import { useColors } from '../../styles';
-import { useState } from 'react';
 
 export const Button = ({
   text,
@@ -38,23 +37,27 @@ export const Button = ({
           paddingVertical: 16,
           justifyContent: 'center',
           alignItems: 'center',
+          flexDirection: 'row',
           ...(typeof style === 'object' ? style : {})
         })}
         hitSlop={{ top: 10, bottom: 10, right: 10, left: 10 }}
         {...rest}
       >
-        {loading ? <ActivityIndicator animating /> :
-          <Text
-            style={{
-              fontSize: 16,
-              lineHeight: 24,
-              fontWeight: '600',
-              color: colors.textInverted,
-            }}
-          >
-            {text}
-          </Text>
-        }
+        <Text
+          style={{
+            fontSize: 16,
+            lineHeight: 24,
+            fontWeight: '600',
+            color: colors.buttonPrimaryContent,
+          }}
+        >
+          {loading ? null : text}
+        </Text>
+        {loading ?
+          <ActivityIndicator
+            animating
+            color={colors.buttonPrimaryContent}
+          /> : null}
       </Pressable>
     </View>
   );

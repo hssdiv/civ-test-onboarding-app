@@ -38,6 +38,7 @@ export const useAuth = create<AuthStore>()(
             showToast({ description: 'Account successfully created' });
 
             const accountRequestResult = await AuthApi.getAccount(signUpRequestResult.basicAuthCredentials)
+            console.log(`accountRequestResult is: ${JSON.stringify(accountRequestResult)}`);
 
             if (accountRequestResult) {
               // hotfix, while API doesn't return data correctly
