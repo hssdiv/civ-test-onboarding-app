@@ -1,5 +1,6 @@
 import { Appearance } from 'react-native';
 import { palette } from './palette';
+import { useTheme } from '../stores';
 
 const baseColors = {
   danger: palette.red,
@@ -36,6 +37,7 @@ const colors = {
 };
 
 export const useColors = () => {
-  const colorScheme = Appearance.getColorScheme();
+  // const colorScheme = Appearance.getColorScheme();
+  const colorScheme = useTheme((store) => store.theme);
   return colors[colorScheme || 'light'];
 };

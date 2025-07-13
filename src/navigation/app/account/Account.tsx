@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { getFakeAccountData } from './helper/getFakeAccountData';
 import { AccountData } from '../../../types';
 import { SvgUri } from 'react-native-svg';
-import { AccountInfo, AccountTransactions } from './components';
+import { AccountInfo, AccountTransactions, ThemeSwitch } from './components';
 import { useColors } from '../../../styles';
 
 export const Account = () => {
@@ -29,12 +29,9 @@ export const Account = () => {
             onPress={() => signOut()}
           />
         }
-      // rightComponent={() =>
-      //   <ButtonSmall
-      //     text='test'
-      //     onPress={() => { }}
-      //   />
-      // }
+        rightComponent={() =>
+          <ThemeSwitch />
+        }
       />
 
       <ScrollView
