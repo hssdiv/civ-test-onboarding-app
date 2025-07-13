@@ -1,10 +1,8 @@
-import { Appearance } from 'react-native';
 import { palette } from './palette';
-import { useTheme } from '../stores';
+import { useTheme } from '../stores/theme/theme.store';
 
 const baseColors = {
   danger: palette.red,
-  systemSucceess: 'rgba(96, 199, 113, 1)',
 };
 
 const colors = {
@@ -20,6 +18,8 @@ const colors = {
     buttonPressed: palette.blueSecondary,
     background: 'rgba(245, 247, 255, 1)',
     backgroundSecondary: palette.white,
+    systemSucceess: 'rgba(0, 146, 24, 1)',
+    systemPrimary: palette.primaryLight,
   },
   dark: {
     ...baseColors,
@@ -33,10 +33,13 @@ const colors = {
     buttonPressed: 'rgba(229, 180, 235, 1)',
     background: 'rgba(36, 15, 81, 1)',
     backgroundSecondary: 'rgba(58, 39, 98, 1)',
+    systemSucceess: 'rgba(96, 199, 113, 1)',
+    systemPrimary: palette.white,
   },
 };
 
-export const useColors = () => {
+export const 
+useColors = () => {
   // const colorScheme = Appearance.getColorScheme();
   const colorScheme = useTheme((store) => store.theme);
   return colors[colorScheme || 'light'];
