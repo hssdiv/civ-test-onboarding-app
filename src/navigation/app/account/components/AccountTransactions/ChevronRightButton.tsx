@@ -1,0 +1,28 @@
+import { Alert, Pressable } from 'react-native';
+import { useColors } from '../../../../../styles';
+import { SvgCss } from 'react-native-svg/css';
+
+export const ChevronRightButton = () => {
+  const colors = useColors();
+
+  return (
+    <Pressable
+      style={{
+        backgroundColor: colors.buttonTetriary,
+        width: 20,
+        height: 20,
+        borderRadius: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+      hitSlop={{ top: 20, bottom: 20, right: 20, left: 20 }}
+      onPress={() => Alert.alert('navigate to transactions')}
+    >
+      <SvgCss
+        xml={`<svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M3.62628 4.99969L0.558673 1.87955C0.379302 1.69711 0.379302 1.40456 0.558672 1.22212C0.742402 1.03524 1.04364 1.03524 1.22737 1.22212L4.94134 4.99969L1.22737 8.77727C1.04364 8.96414 0.742403 8.96414 0.558673 8.77727C0.379302 8.59483 0.379302 8.30227 0.558673 8.11983L3.62628 4.99969Z" fill="${colors.text}" stroke="${colors.buttonTetriaryContent}" stroke-width="0.5"/></svg>`}
+        width={5}
+        height={8}
+      />
+    </Pressable>
+  );
+};

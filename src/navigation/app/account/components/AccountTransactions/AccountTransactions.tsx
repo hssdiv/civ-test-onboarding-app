@@ -3,6 +3,7 @@ import { useColors, styles } from '../../../../../styles';
 import { Text } from '../../../../../components';
 import { Transaction } from '../../../../../types';
 import { TransactionItem } from './TransactionItem';
+import { ChevronRightButton } from './ChevronRightButton';
 
 export const AccountTransactions = ({
   transactions,
@@ -23,7 +24,7 @@ export const AccountTransactions = ({
     >
       <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
         <Text>Recent Transactions</Text>
-        <Text>{'>'}</Text>
+        <ChevronRightButton />
       </View>
 
       {transactions?.map((transaction, index) => (
