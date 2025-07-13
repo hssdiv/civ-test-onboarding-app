@@ -21,7 +21,7 @@ export const Header = ({
         backgroundColor: colors.background,
         justifyContent: 'center',
         flexDirection: 'row',
-        paddingHorizontal: 10,
+        paddingHorizontal: 16,
       }}
     >
 
