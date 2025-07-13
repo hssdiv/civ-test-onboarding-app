@@ -4,15 +4,16 @@ import { createJSONStorage, persist } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
 import { showToast, withAlert } from '../../helper';
 import { AuthApi } from '../../services';
-import { CreateAccountForm } from '../../types';
+import { AccountData, CreateAccountForm } from '../../types';
+import { AxiosError } from 'axios';
 
 interface AuthStore {
   loading: boolean;
   onboardingFinished: boolean;
   onFinishedOnboarding: () => void;
-  token: string;
-  setToken: (newToken: string) => void;
-  signUp: (data: CreateAccountForm) => Promise<string>;
+  account: AccountData | null;
+  setAccount: (newAccount: AccountData) => void;
+  signUp: (data: CreateAccountForm) => Promise<AccountData | void>;
   signOut: () => void;
 }
 
@@ -24,20 +25,37 @@ export const useAuth = create<AuthStore>()(
       onFinishedOnboarding: () => {
         set({ onboardingFinished: true })
       },
-      token: '',
-      setToken: (newToken) => set({ token: newToken }),
+      account: null,
+      setAccount: (newAccount) => set({ account: newAccount }),
       signUp: async (data: CreateAccountForm) => {
         try {
           set({ loading: true });
 
-          const result = await AuthApi.signUp(data);
-          console.log('signup result: ', result)
-          // const token = result?.token || '';
-          const fakeToken = Math.random().toString()
+          const signUpRequestResult = await AuthApi.signUp(data);
+          console.log('signup result: ', signUpRequestResult)
 
-          set({ token: fakeToken });
+          if (signUpRequestResult?.message === 'User signup successful!') {
+            showToast({ description: 'Account successfully created' });
 
-          return fakeToken;
+            const accountRequestResult = await AuthApi.getAccount(signUpRequestResult.basicAuthCredentials)
+
+            if (accountRequestResult) {
+              // hotfix, while API doesn't return data correctly
+              const accountFixed = {
+                ...accountRequestResult,
+                id:  Number(accountRequestResult.accountType),
+                bank: 'Kuda Bank',
+                accountRequestResult: 'Savings'
+              }
+
+              set({ account: accountFixed });
+              return accountFixed;
+            } else {
+              showToast({ error: new AxiosError("Couldn't load account data") });
+            }
+          } else {
+            showToast({ description: signUpRequestResult?.message });
+          }
         } catch (error: any) {
           console.log('signup error:');
           console.log(error?.message);
@@ -48,15 +66,12 @@ export const useAuth = create<AuthStore>()(
         } finally {
           set({ loading: false });
         }
-        return ''
       },
       signOut: () => {
-
         withAlert({
           title: 'Logout?',
-          // message: 'Are you sure you want to logout?',
           callback: async () => {
-            set({ token: '' });
+            set({ account: null });
           },
         });
       },
@@ -65,7 +80,7 @@ export const useAuth = create<AuthStore>()(
       name: 'auth-storage',
       storage: createJSONStorage(() => AsyncStorage),
       partialize: (state) => ({
-        token: state.token,
+        account: state.account,
         onboardingFinished: state.onboardingFinished,
       }),
     },

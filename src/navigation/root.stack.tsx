@@ -7,7 +7,7 @@ import { useAuth } from "../stores";
 const Stack = createNativeStackNavigator();
 
 export const RootStack = () => {
-  const token = useAuth(store => store.token)
+  const account = useAuth(store => store.account)
 
   return (
     <View style={{ flex: 1, width: '100%' }}>
@@ -16,7 +16,7 @@ export const RootStack = () => {
           headerShown: false
         }}
       >
-        {token ?
+        {account ?
           <Stack.Screen name="App" component={AppStack} /> :
           <Stack.Screen name="Auth" component={AuthStack} />}
       </Stack.Navigator>

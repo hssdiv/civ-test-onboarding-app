@@ -9,6 +9,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { CreateAccountForm } from '../../../types';
 import { useAuth } from '../../../stores';
+import { getTempAccount } from './helper/getTempAccount';
 
 export const SignUp = () => {
   const colors = useColors();
@@ -18,15 +19,12 @@ export const SignUp = () => {
   const [securePassword, setSecurePassword] = useState(true);
 
   const signUp = useAuth(store => store.signUp);
-  const setToken = useAuth(store => store.setToken);
+  const setAccount = useAuth(store => store.setAccount);
   const loading = useAuth(store => store.loading);
 
   const onSubmit = async (data: CreateAccountForm) => {
     console.log('signup form data: ', data)
-    const result = await signUp(data);
-    if (result) {
-      showToast({ description: 'Account successfully created' });
-    }
+    await signUp(data);
   };
 
 
@@ -196,7 +194,7 @@ export const SignUp = () => {
               onPress={() => {
                 Alert.alert('should navigate to signIn screen', 'for now using for quick login')
                 // navigation.navigate('signIn')
-                setToken('test123')
+                setAccount(getTempAccount())
               }}
             >
               Sign in
