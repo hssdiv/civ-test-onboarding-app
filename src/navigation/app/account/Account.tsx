@@ -21,6 +21,7 @@ export const Account = () => {
           <ButtonNavigation
             onPress={() => {
               signOut({
+                withConfirmation: Boolean(accountData),
                 onSignOutCallback: () => {
                   navigation.reset({
                     index: 1,
