@@ -7,7 +7,7 @@ import { formatPrice } from '../../helper/formatPrice';
 export const AccountInfo = ({
   accountData
 }: {
-  accountData?: AccountData
+  accountData?: AccountData | null;
 }) => {
 
   const colors = useColors();

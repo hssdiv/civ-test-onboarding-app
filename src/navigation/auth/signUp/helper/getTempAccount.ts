@@ -1,6 +1,7 @@
-export const getTempAccount = () => ({
+import { AccountData } from "../../../../types";
+
+export const getTempAccount = (): AccountData => ({
   id: 1234567890,
-  bank: 'Kuda Bank',
   "accountType": "Savings",
   "availableBalance": 12000,
   "currency": "N",

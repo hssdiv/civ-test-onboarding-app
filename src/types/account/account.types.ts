@@ -7,7 +7,6 @@ export interface Transaction {
 
 export interface AccountData {
   id: number;
-  bank: string;
   accountType: string;
   availableBalance: number;
   currency: string;

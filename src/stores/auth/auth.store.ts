@@ -42,11 +42,10 @@ export const useAuth = create<AuthStore>()(
 
             if (accountRequestResult) {
               // hotfix, while API doesn't return data correctly
-              const accountFixed = {
+              const accountFixed: AccountData = {
                 ...accountRequestResult,
                 id:  Number(accountRequestResult.accountType),
-                bank: 'Kuda Bank',
-                accountRequestResult: 'Savings'
+                accountType: 'Savings'
               }
 
               set({ account: accountFixed });

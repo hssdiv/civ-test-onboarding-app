@@ -1,24 +1,13 @@
 import { Image, ScrollView, View } from 'react-native';
 import { Background, ButtonNavigation, ButtonSmall, Header, Layout, Text } from '../../../components';
 import { useAuth } from '../../../stores';
-import { useEffect, useState } from 'react';
-import { getFakeAccountData } from './helper/getFakeAccountData';
-import { AccountData } from '../../../types';
 import { SvgUri } from 'react-native-svg';
 import { AccountInfo, AccountTransactions, ThemeSwitch } from './components';
-import { useColors } from '../../../styles';
 
 export const Account = () => {
   const signOut = useAuth(store => store.signOut);
 
-  const colors = useColors();
-
-  const [accountData, setAccountData] = useState<AccountData>()
-
-  useEffect(() => {
-    const newAccountData = getFakeAccountData()
-    setAccountData(newAccountData);
-  }, []);
+  const accountData = useAuth(store => store.account)
 
   return (
     <Background>
@@ -60,7 +49,7 @@ export const Account = () => {
                 paddingTop: 17,
                 fontWeight: '600',
               }}>
-              {accountData?.bank}
+              Kuda Bank
             </Text>
           </View>
 
