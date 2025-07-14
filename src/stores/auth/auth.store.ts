@@ -14,7 +14,7 @@ interface AuthStore {
   account: AccountData | null;
   signUp: (data: CreateAccountForm) => Promise<SignUpResult | void>;
   getAccount: ({ username, password }: SignInForm) => Promise<AccountData | void>;
-  signOut: ({ onSignOutCallback }: { onSignOutCallback?: () => void }) => void;
+  signOut: ({ withConfirmation, onSignOutCallback }: { withConfirmation?: boolean; onSignOutCallback?: () => void }) => void;
 }
 
 export const useAuth = create<AuthStore>()(
@@ -80,14 +80,19 @@ export const useAuth = create<AuthStore>()(
           set({ loading: false });
         }
       },
-      signOut: ({ onSignOutCallback }) => {
-        withAlert({
-          title: 'Logout?',
-          callback: async () => {
-            set({ account: null });
-            onSignOutCallback?.();
-          },
-        });
+      signOut: ({ withConfirmation, onSignOutCallback }) => {
+        if (withConfirmation) {
+          withAlert({
+            title: 'Logout?',
+            callback: async () => {
+              set({ account: null });
+              onSignOutCallback?.();
+            },
+          });
+        } else {
+          set({ account: null });
+          onSignOutCallback?.();
+        }
       },
     })),
     {
