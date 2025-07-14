@@ -179,7 +179,7 @@ export const SignUp = () => {
 
         <View
           style={{
-            flex: 1,
+            marginBottom: 16,
           }}
         >
           <Text

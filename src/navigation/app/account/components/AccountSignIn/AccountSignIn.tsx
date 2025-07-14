@@ -94,6 +94,9 @@ export const AccountSignIn = () => {
 
       <Button
         text="Sign in"
+        containerStyle={{
+          marginBottom: 16,
+        }}
         loading={loading}
         onPress={handleSubmit(onSubmit)}
       />
