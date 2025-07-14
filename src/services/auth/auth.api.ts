@@ -10,11 +10,10 @@ export const AuthApi = {
   getAccount: async ({ username, password }: SignInForm): Promise<AccountData> => {
     const url = '/account'
     const result = await api.get(url, {
-      auth:
-      {
+      auth: {
         username,
         password
-      }
+      },
     });
     return result.data;
   },
