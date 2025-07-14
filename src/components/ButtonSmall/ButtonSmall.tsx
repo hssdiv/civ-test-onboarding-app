@@ -1,7 +1,6 @@
-import { PixelRatio, Platform, Pressable, PressableProps, View, ViewStyle } from 'react-native';
+import { Platform, Pressable, PressableProps, View, ViewStyle } from 'react-native';
 import { Text } from '../Text';
 import { useColors } from '../../styles';
-import { useState } from 'react';
 
 export const ButtonSmall = ({
   text,

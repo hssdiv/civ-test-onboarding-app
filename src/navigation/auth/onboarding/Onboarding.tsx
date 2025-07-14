@@ -50,9 +50,7 @@ export const Onboarding = () => {
             backgroundColor: colors.backgroundSecondary,
             borderRadius: 48,
             paddingTop: 36,
-            // flex: 1,
             overflow: 'hidden',
-            // justifyContent: 'center',
           }}
         >
           <OnboardingCarousel

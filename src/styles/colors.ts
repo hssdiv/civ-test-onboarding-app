@@ -52,7 +52,6 @@ const colors = {
 
 export const 
 useColors = () => {
-  // const colorScheme = Appearance.getColorScheme();
   const colorScheme = useTheme((store) => store.theme);
   return colors[colorScheme || 'light'];
 };

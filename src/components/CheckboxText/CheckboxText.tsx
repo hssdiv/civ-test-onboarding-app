@@ -2,7 +2,6 @@ import {
   TouchableOpacity,
   View,
   Text,
-  Image,
 } from 'react-native';
 import { useColors } from '../../styles';
 import { SvgCss } from 'react-native-svg/css'

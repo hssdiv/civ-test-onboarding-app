@@ -9,7 +9,7 @@ interface ThemeStore {
 }
 
 export const useTheme = create<ThemeStore>()((set, get) => ({
-  theme: 'light',
+  theme: 'light', // Appearance.getColorScheme();
   toggleThemeChange: () => {
     set({ theme: get().theme === 'light' ? 'dark' : 'light' }),
     StatusBar.setBarStyle(get().theme === 'light' ? 'dark-content' : 'light-content');
