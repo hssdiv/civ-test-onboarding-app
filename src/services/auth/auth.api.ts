@@ -1,4 +1,4 @@
-import { AccountData, CreateAccountForm, SignUpResult } from "../../types";
+import { AccountData, CreateAccountForm, SignInForm, SignUpResult } from "../../types";
 import { api } from "../api";
 
 export const AuthApi = {
@@ -7,7 +7,7 @@ export const AuthApi = {
     const result = await api.post(url, { name, email, password });
     return result.data;
   },
-  getAccount: async ({ username, password }: { username: string; password: string }): Promise<AccountData> => {
+  getAccount: async ({ username, password }: SignInForm): Promise<AccountData> => {
     const url = '/account'
     const result = await api.get(url, {
       auth:
