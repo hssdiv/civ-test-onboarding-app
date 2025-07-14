@@ -25,7 +25,6 @@ export const SignUp = () => {
     await signUp(data);
   };
 
-
   const {
     control,
     handleSubmit,
@@ -186,7 +185,8 @@ export const SignUp = () => {
             style={{
               textAlign: 'center',
             }}
-          >Already have an account?{' '}
+          >
+            Already have an account?{' '}
             <Text
               style={{ color: colors.primary }}
               onPress={() => {
