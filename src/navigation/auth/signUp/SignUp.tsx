@@ -18,7 +18,6 @@ export const SignUp = () => {
   const [securePassword, setSecurePassword] = useState(true);
 
   const signUp = useAuth(store => store.signUp);
-  const setAccount = useAuth(store => store.setAccount);
   const loading = useAuth(store => store.loading);
 
   const onSubmit = async (data: CreateAccountForm) => {

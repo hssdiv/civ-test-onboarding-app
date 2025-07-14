@@ -12,7 +12,6 @@ interface AuthStore {
   onboardingFinished: boolean;
   onFinishedOnboarding: () => void;
   account: AccountData | null;
-  setAccount: (newAccount: AccountData) => void;
   signUp: (data: CreateAccountForm) => Promise<SignUpResult | void>;
   getAccount: ({ username, password }: SignInForm) => Promise<AccountData | void>;
   signOut: ({ onSignOutCallback }: { onSignOutCallback?: () => void }) => void;
@@ -27,7 +26,6 @@ export const useAuth = create<AuthStore>()(
         set({ onboardingFinished: true })
       },
       account: null,
-      setAccount: (newAccount) => set({ account: newAccount }),
       signUp: async (data: CreateAccountForm) => {
         try {
           set({ loading: true });

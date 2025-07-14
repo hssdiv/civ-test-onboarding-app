@@ -18,7 +18,7 @@ export const AccountSignIn = () => {
 
   const onSubmit = async (data: SignInForm) => {
     console.log('account signin form data: ', data)
-    getAccount(data)
+    await getAccount(data)
   };
 
   const {
@@ -73,10 +73,6 @@ export const AccountSignIn = () => {
           name="password"
           rules={{
             required: 'Provide Password',
-            minLength: {
-              value: 6,
-              message: 'Password has to be at least 6 characters',
-            },
           }}
           render={({ field: { onChange, onBlur, value } }) => (
             <PasswordField
