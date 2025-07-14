@@ -1,12 +1,14 @@
-import { createNativeStackNavigator, NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { createNativeStackNavigator, NativeStackNavigationProp, NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Account } from "./account";
 export type AppScreens = {
   Account: { username?: string; password?: string } | undefined;
 };
 
-const Stack = createNativeStackNavigator<AppScreens>();
-
 export type AppScreensNavigation = NativeStackNavigationProp<AppScreens>;
+
+export type AccountSignInRoute = NativeStackScreenProps<AppScreens, 'Account'>['route'];
+
+const Stack = createNativeStackNavigator<AppScreens>();
 
 export const AppStack = () => {
   return (
