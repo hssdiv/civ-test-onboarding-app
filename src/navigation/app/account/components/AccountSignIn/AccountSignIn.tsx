@@ -43,6 +43,7 @@ export const AccountSignIn = () => {
             marginTop: 36,
             fontSize: 32,
             color: colors.titlePrimary,
+            marginBottom: 32,
           }}
         >
           Sign into Account
@@ -99,9 +100,6 @@ export const AccountSignIn = () => {
         text="Sign in"
         loading={loading}
         onPress={handleSubmit(onSubmit)}
-        containerStyle={{
-          marginTop: 16,
-        }}
       />
 
     </Layout>
