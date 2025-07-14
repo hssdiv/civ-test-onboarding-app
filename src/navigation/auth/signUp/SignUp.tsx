@@ -10,11 +10,12 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { CreateAccountForm } from '../../../types';
 import { useAuth } from '../../../stores';
 import { getTempAccount } from './helper/getTempAccount';
+import { RootScreensNavigation } from '../../root.stack';
 
 export const SignUp = () => {
   const colors = useColors();
 
-  const navigation = useNavigation<AuthNavigation>();
+  const navigation = useNavigation<RootScreensNavigation>();
 
   const [securePassword, setSecurePassword] = useState(true);
 
@@ -50,7 +51,7 @@ export const SignUp = () => {
               navigation.reset({
                 index: 1,
                 routes: [
-                  { name: 'Onboarding' },
+                  { name: 'Auth', params: { screen: 'Onboarding' } },
                 ],
               });
             }}
@@ -192,9 +193,7 @@ export const SignUp = () => {
             <Text
               style={{ color: colors.primary }}
               onPress={() => {
-                Alert.alert('should navigate to signIn screen', 'for now using for quick login')
-                // navigation.navigate('signIn')
-                setAccount(getTempAccount())
+                navigation.navigate('App', { screen: 'Account' })
               }}
             >
               Sign in
