@@ -13,3 +13,8 @@ export interface AccountData {
   dateAdded: string;
   transactions: Transaction[];
 }
+
+export interface SignInForm {
+  username: string;
+  password: string;
+}
