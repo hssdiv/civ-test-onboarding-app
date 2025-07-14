@@ -12,7 +12,7 @@ export const AppStack = () => {
   return (
     <Stack.Navigator
       screenOptions={{
-        headerShown: false
+        headerShown: false,
       }}
     >
       <Stack.Screen name="Account" component={Account} />
