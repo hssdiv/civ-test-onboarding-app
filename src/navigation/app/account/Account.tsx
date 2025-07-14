@@ -1,13 +1,16 @@
-import { Image, ScrollView, View } from 'react-native';
-import { Background, ButtonNavigation, ButtonSmall, Header, Layout, Text } from '../../../components';
+import { ScrollView } from 'react-native';
+import { Background, ButtonNavigation, Header, Layout } from '../../../components';
 import { useAuth } from '../../../stores';
-import { SvgUri } from 'react-native-svg';
-import { AccountInfo, AccountTransactions, ThemeSwitch } from './components';
+import { AccountBank, AccountInfo, AccountSignIn, AccountTransactions, ThemeSwitch } from './components';
+import { useNavigation } from '@react-navigation/native';
+import { RootScreensNavigation } from '../../root.stack';
 
 export const Account = () => {
   const signOut = useAuth(store => store.signOut);
 
   const accountData = useAuth(store => store.account)
+
+  const navigation = useNavigation<RootScreensNavigation>();
 
   return (
     <Background>
@@ -15,7 +18,19 @@ export const Account = () => {
         title='My Account'
         leftComponent={() =>
           <ButtonNavigation
-            onPress={() => signOut()}
+            onPress={() => {
+              signOut({
+                onSignOutCallback: () => {
+                  navigation.reset({
+                    index: 1,
+                    routes: [
+                      { name: 'Auth', params: { screen: 'SignUp' } },
+                    ],
+                  });
+                }
+              })
+
+            }}
           />
         }
         rightComponent={() =>
@@ -23,44 +38,25 @@ export const Account = () => {
         }
       />
 
-      <ScrollView
-        contentContainerStyle={{
-          paddingBottom: 200,
-        }}
-      >
-        <Layout>
-          <View
-            style={{
-              alignItems: 'center',
-              marginTop: 28,
-            }}
-          >
-            <SvgUri
-              width={48}
-              height={48}
-              uri={
-                Image.resolveAssetSource(
-                  require('../../../../assets/files/kuda.svg'),
-                ).uri
-              }
+      {accountData ?
+        <ScrollView
+          contentContainerStyle={{
+            paddingBottom: 200,
+          }}
+        >
+          <Layout>
+            <AccountBank />
+
+            <AccountInfo accountData={accountData} />
+
+            <AccountTransactions
+              transactions={accountData?.transactions}
+              currency={accountData?.currency}
             />
-            <Text
-              style={{
-                paddingTop: 17,
-                fontWeight: '600',
-              }}>
-              Kuda Bank
-            </Text>
-          </View>
-
-          <AccountInfo accountData={accountData} />
-
-          <AccountTransactions
-            transactions={accountData?.transactions}
-            currency={accountData?.currency}
-          />
-        </Layout>
-      </ScrollView>
+          </Layout>
+        </ScrollView> :
+        <AccountSignIn />
+      }
     </Background >
   );
 };
