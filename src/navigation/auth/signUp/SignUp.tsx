@@ -9,6 +9,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { CreateAccountForm } from '../../../types';
 import { useAuth } from '../../../stores';
 import { RootScreensNavigation } from '../../root.stack';
+import { NavigateToSignIn, SignUpHeader } from './components';
 
 export const SignUp = () => {
   const colors = useColors();
@@ -67,25 +68,7 @@ export const SignUp = () => {
         <KeyboardAwareScrollView
           enableResetScrollToCoords={false}
         >
-          <Text
-            style={{
-              marginTop: 36,
-              fontSize: 32,
-              color: colors.titlePrimary,
-            }}
-          >
-            Create account
-          </Text>
-          <Text
-            style={{
-              color: colors.textSecondary,
-              fontSize: 16,
-              marginTop: 8,
-              marginBottom: 32,
-            }}
-          >
-            Complete the sign up to get started
-          </Text>
+          <SignUpHeader />
 
           <Controller
             control={control}
@@ -190,21 +173,7 @@ export const SignUp = () => {
             marginBottom: 16,
           }}
         >
-          <Text
-            style={{
-              textAlign: 'center',
-            }}
-          >
-            Already have an account?{' '}
-            <Text
-              style={{ color: colors.primary }}
-              onPress={() => {
-                navigation.navigate('App', { screen: 'Account' })
-              }}
-            >
-              Sign in
-            </Text>
-          </Text>
+          <NavigateToSignIn />
 
           <Button
             text="Create account"
