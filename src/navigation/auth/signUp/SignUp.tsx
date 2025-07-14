@@ -1,15 +1,13 @@
-import { Alert, View } from 'react-native';
+import { View } from 'react-native';
 import { Background, Button, ButtonNavigation, CheckboxText, Header, Layout, PasswordField, Text, TextInput } from '../../../components';
-import { EMAIL_REGEX, safeOpenURL, showToast } from '../../../helper';
+import { EMAIL_REGEX, safeOpenURL } from '../../../helper';
 import { useColors } from '../../../styles';
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { AuthNavigation } from '../auth.stack';
 import { Controller, useForm } from 'react-hook-form';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { CreateAccountForm } from '../../../types';
 import { useAuth } from '../../../stores';
-import { getTempAccount } from './helper/getTempAccount';
 import { RootScreensNavigation } from '../../root.stack';
 
 export const SignUp = () => {
