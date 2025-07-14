@@ -4,6 +4,7 @@ import { useAuth } from '../../../stores';
 import { AccountBank, AccountInfo, AccountSignIn, AccountTransactions, ShimmerAccountLoader, ThemeSwitch } from './components';
 import { useNavigation } from '@react-navigation/native';
 import { RootScreensNavigation } from '../../root.stack';
+import { useEffect, useState } from 'react';
 
 export const Account = () => {
   const signOut = useAuth(store => store.signOut);
@@ -12,6 +13,18 @@ export const Account = () => {
   const accountData = useAuth(store => store.account)
 
   const navigation = useNavigation<RootScreensNavigation>();
+
+  const [shimmerLoading, setShimmerLoading] = useState(false)
+
+  useEffect(() => {
+    if (loading) {
+      setShimmerLoading(true);
+    } else {
+      setTimeout(() => {
+        setShimmerLoading(false);
+      }, 500);
+    }
+  }, [loading]);
 
   return (
     <Background>
@@ -39,7 +52,7 @@ export const Account = () => {
           <ThemeSwitch />
         }
       />
-     {loading ? (
+      {shimmerLoading ? (
         <ShimmerAccountLoader />
       ) : accountData ? (
         <ScrollView
