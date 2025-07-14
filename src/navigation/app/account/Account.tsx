@@ -1,13 +1,14 @@
 import { ScrollView } from 'react-native';
 import { Background, ButtonNavigation, Header, Layout } from '../../../components';
 import { useAuth } from '../../../stores';
-import { AccountBank, AccountInfo, AccountSignIn, AccountTransactions, ThemeSwitch } from './components';
+import { AccountBank, AccountInfo, AccountSignIn, AccountTransactions, ShimmerAccountLoader, ThemeSwitch } from './components';
 import { useNavigation } from '@react-navigation/native';
 import { RootScreensNavigation } from '../../root.stack';
 
 export const Account = () => {
   const signOut = useAuth(store => store.signOut);
 
+  const loading = useAuth(store => store.loading)
   const accountData = useAuth(store => store.account)
 
   const navigation = useNavigation<RootScreensNavigation>();
@@ -37,8 +38,9 @@ export const Account = () => {
           <ThemeSwitch />
         }
       />
-
-      {accountData ?
+     {loading ? (
+        <ShimmerAccountLoader />
+      ) : accountData ? (
         <ScrollView
           contentContainerStyle={{
             paddingBottom: 200,
@@ -54,9 +56,10 @@ export const Account = () => {
               currency={accountData?.currency}
             />
           </Layout>
-        </ScrollView> :
+        </ScrollView>
+      ) : (
         <AccountSignIn />
-      }
+      )}
     </Background >
   );
 };
