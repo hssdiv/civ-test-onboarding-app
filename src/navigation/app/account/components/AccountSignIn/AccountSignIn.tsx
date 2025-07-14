@@ -6,7 +6,9 @@ import { Controller, useForm } from "react-hook-form";
 import { Button, Layout, PasswordField, Text, TextInput } from "../../../../../components";
 import { AccountBank } from "../AccountBank";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-
+import { useRoute } from "@react-navigation/native";
+import { AccountSignInRoute } from "../../../app.stack";
+import { AuthCredentialModal } from "../AuthCredentialModal";
 
 export const AccountSignIn = () => {
   const colors = useColors();
@@ -21,10 +23,13 @@ export const AccountSignIn = () => {
     await getAccount(data)
   };
 
+  const { params } = useRoute<AccountSignInRoute>();
+
   const {
     control,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm<SignInForm>({
     defaultValues: {
       username: '',
@@ -101,7 +106,16 @@ export const AccountSignIn = () => {
         onPress={handleSubmit(onSubmit)}
       />
 
+      {params?.username && params?.password ?
+        <AuthCredentialModal
+          username={params.username}
+          password={params.password}
+          onClose={() => {
+            setValue('username', params.username as string)
+            setValue('password', params.password as string)
+          }}
+        /> 
+        : null}
     </Layout>
   );
 };
-
