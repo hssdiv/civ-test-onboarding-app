@@ -1,7 +1,7 @@
 import { createNativeStackNavigator, NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Account } from "./account";
 export type AppScreens = {
-  Account: undefined;
+  Account: { username?: string; password?: string } | undefined;
 };
 
 const Stack = createNativeStackNavigator<AppScreens>();

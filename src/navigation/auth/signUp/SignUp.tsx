@@ -22,7 +22,16 @@ export const SignUp = () => {
 
   const onSubmit = async (data: CreateAccountForm) => {
     console.log('signup form data: ', data)
-    await signUp(data);
+    const result = await signUp(data);
+    if (result) {
+      navigation.navigate('App', {
+        screen: 'Account',
+        params: {
+          username: result?.basicAuthCredentials?.username,
+          password: result?.basicAuthCredentials?.password,
+        }
+      })
+    }
   };
 
   const {
