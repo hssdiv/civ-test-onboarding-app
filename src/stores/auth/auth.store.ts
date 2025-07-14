@@ -4,7 +4,7 @@ import { createJSONStorage, persist } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
 import { showToast, withAlert } from '../../helper';
 import { AuthApi } from '../../services';
-import { AccountData, CreateAccountForm } from '../../types';
+import { AccountData, CreateAccountForm, SignInForm, SignUpResult } from '../../types';
 import { AxiosError } from 'axios';
 
 interface AuthStore {
@@ -13,8 +13,9 @@ interface AuthStore {
   onFinishedOnboarding: () => void;
   account: AccountData | null;
   setAccount: (newAccount: AccountData) => void;
-  signUp: (data: CreateAccountForm) => Promise<AccountData | void>;
-  signOut: () => void;
+  signUp: (data: CreateAccountForm) => Promise<SignUpResult | void>;
+  getAccount: ({ username, password }: SignInForm) => Promise<AccountData | void>;
+  signOut: ({ onSignOutCallback }: { onSignOutCallback?: () => void }) => void;
 }
 
 export const useAuth = create<AuthStore>()(
@@ -31,30 +32,14 @@ export const useAuth = create<AuthStore>()(
         try {
           set({ loading: true });
 
-          const signUpRequestResult = await AuthApi.signUp(data);
-          console.log('signup result: ', signUpRequestResult)
+          const result = await AuthApi.signUp(data);
+          console.log('signup result: ', result)
 
-          if (signUpRequestResult?.message === 'User signup successful!') {
-            showToast({ description: 'Account successfully created' });
-
-            const accountRequestResult = await AuthApi.getAccount(signUpRequestResult.basicAuthCredentials)
-            console.log(`accountRequestResult is: ${JSON.stringify(accountRequestResult)}`);
-
-            if (accountRequestResult) {
-              // hotfix, while API doesn't return data correctly
-              const accountFixed: AccountData = {
-                ...accountRequestResult,
-                id:  Number(accountRequestResult.accountType),
-                accountType: 'Savings'
-              }
-
-              set({ account: accountFixed });
-              return accountFixed;
-            } else {
-              showToast({ error: new AxiosError("Couldn't load account data") });
-            }
+          if (result?.message === 'User signup successful!') {
+            // showToast({ description: 'Account successfully created' });
+            return result;
           } else {
-            showToast({ description: signUpRequestResult?.message });
+            showToast({ error: new AxiosError(result?.message || '') });
           }
         } catch (error: any) {
           console.log('signup error:');
@@ -67,11 +52,42 @@ export const useAuth = create<AuthStore>()(
           set({ loading: false });
         }
       },
-      signOut: () => {
+      getAccount: async ({ username, password }) => {
+        try {
+          set({ loading: true });
+          const result = await AuthApi.getAccount({ username, password })
+          console.log(`result is: ${JSON.stringify(result)}`);
+
+          if (result) {
+            // hotfix, while API doesn't return data correctly
+            const accountFixed: AccountData = {
+              ...result,
+              id: Number(result.accountType),
+              accountType: 'Savings'
+            }
+
+            set({ account: accountFixed });
+            return accountFixed;
+          } else {
+            showToast({ error: new AxiosError("Couldn't load account data") });
+          }
+        } catch (error: any) {
+          console.log('getaccount error:');
+          console.log(error?.message);
+          showToast({
+            title: 'Error',
+            error,
+          });
+        } finally {
+          set({ loading: false });
+        }
+      },
+      signOut: ({ onSignOutCallback }) => {
         withAlert({
           title: 'Logout?',
           callback: async () => {
             set({ account: null });
+            onSignOutCallback?.();
           },
         });
       },
