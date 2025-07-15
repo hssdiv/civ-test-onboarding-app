@@ -24,6 +24,7 @@ export const RootStack = () => {
           headerShown: false,
           animation: 'fade'
         }}
+        initialRouteName={account ? 'App' : 'Auth'}
       >
         <Stack.Screen name="Auth" component={AuthStack} />
         <Stack.Screen name="App" component={AppStack} />
