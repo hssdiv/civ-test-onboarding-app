@@ -12,12 +12,14 @@ export const CheckboxText = ({
   text,
   component,
   error,
+  testID,
 }: {
   checked: boolean
   onChange: React.Dispatch<React.SetStateAction<boolean>>;
   text?: string;
   component?: React.ReactElement;
   error?: string;
+  testID?: string;
 }) => {
 
   const colors = useColors();
@@ -25,6 +27,7 @@ export const CheckboxText = ({
   return (
     <>
       <TouchableOpacity
+        testID={testID}
         activeOpacity={0.8}
         onPress={() => {
           onChange?.(!checked);
