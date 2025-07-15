@@ -23,7 +23,7 @@ export const OnboardingCarousel = ({
       <Carousel
         ref={ref}
         width={Dimensions.get("window").width - 40}
-        height={Math.max(Dimensions.get("window").height * 0.17)}
+        height={Dimensions.get("window").height * 0.17}
         data={data}
         loop={false}
         onProgressChange={progress}
