@@ -1,8 +1,9 @@
-import { Dimensions, ScrollView, Text, View } from "react-native";
+import { Dimensions, Text, View } from "react-native";
 import { useSharedValue } from "react-native-reanimated";
 import Carousel, { ICarouselInstance } from "react-native-reanimated-carousel";
 import { useColors } from "../../../../styles";
 import { OnboardingCarouselPagination } from "./OnboardingCarouselPagination";
+import { ScrollView } from "react-native-gesture-handler";
 
 export const OnboardingCarousel = ({
   carouselRef: ref,
@@ -22,7 +23,7 @@ export const OnboardingCarousel = ({
       <Carousel
         ref={ref}
         width={Dimensions.get("window").width - 40}
-        height={Math.max(Dimensions.get("window").height * 0.2, 200)}
+        height={Math.max(Dimensions.get("window").height * 0.17)}
         data={data}
         loop={false}
         onProgressChange={progress}
