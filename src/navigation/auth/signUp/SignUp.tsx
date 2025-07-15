@@ -22,7 +22,7 @@ export const SignUp = () => {
   const loading = useAuth(store => store.loading);
 
   const onSubmit = async (data: CreateAccountForm) => {
-    console.log('signup form data: ', data)
+    // console.log('signup form data: ', data)
     const result = await signUp(data);
     if (result) {
       navigation.navigate('App', {
@@ -78,6 +78,7 @@ export const SignUp = () => {
             }}
             render={({ field: { value, onChange } }) => (
               <TextInput
+                testID='SignUpName'
                 label="Name"
                 placeholder="Enter Name"
                 value={value}
@@ -101,6 +102,7 @@ export const SignUp = () => {
             }}
             render={({ field: { value, onChange } }) => (
               <TextInput
+                testID='SignUpEmail'
                 label="Email"
                 placeholder="Enter Email"
                 value={value}
@@ -126,6 +128,7 @@ export const SignUp = () => {
             }}
             render={({ field: { onChange, onBlur, value } }) => (
               <PasswordField
+                testID='SignUpPassword'
                 value={value || ''}
                 onBlur={onBlur}
                 setValue={onChange}
@@ -150,6 +153,7 @@ export const SignUp = () => {
             }}
             render={({ field: { onChange, value } }) => (
               <CheckboxText
+                testID="SignUpTerms"
                 component={<Text>
                   By signing up, you agree to the{' '}
                   <Text
@@ -176,6 +180,7 @@ export const SignUp = () => {
           <NavigateToSignIn />
 
           <Button
+            testID='SignUpButton'
             text="Create account"
             loading={loading}
             onPress={handleSubmit(onSubmit)}
