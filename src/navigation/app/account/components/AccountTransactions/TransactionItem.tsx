@@ -69,6 +69,7 @@ export const TransactionItem = ({
             <Text
               style={{
                 fontWeight: '600',
+                maxWidth: '100%',
               }}
             >
               {transaction?.name}
@@ -86,6 +87,7 @@ export const TransactionItem = ({
           <Text
             style={{
               fontWeight: 500,
+              maxWidth: '50%',
               color: transaction.amount > 0 ? colors.systemSucceess : colors.text
             }}
           >
