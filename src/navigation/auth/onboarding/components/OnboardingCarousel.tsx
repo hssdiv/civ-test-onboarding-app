@@ -1,4 +1,4 @@
-import { Dimensions, Text, View } from "react-native";
+import { Dimensions, ScrollView, Text, View } from "react-native";
 import { useSharedValue } from "react-native-reanimated";
 import Carousel, { ICarouselInstance } from "react-native-reanimated-carousel";
 import { useColors } from "../../../../styles";
@@ -30,8 +30,8 @@ export const OnboardingCarousel = ({
           marginBottom: 24,
         }}
         renderItem={({ item }) => (
-          <View
-            style={{
+          <ScrollView
+            contentContainerStyle={{
               justifyContent: "center",
               paddingHorizontal: 24
             }}
@@ -54,7 +54,7 @@ export const OnboardingCarousel = ({
             >
               {item.description}
             </Text>
-          </View>
+          </ScrollView>
         )}
         onSnapToItem={(index) => setActiveIndex(index)}
       />

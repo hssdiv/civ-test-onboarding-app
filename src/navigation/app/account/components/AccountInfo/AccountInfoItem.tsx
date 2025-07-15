@@ -27,14 +27,22 @@ export const AccountInfoItem = ({
     >
       <Text
         style={{
+          maxWidth: '50%',
           color: colors.textSecondary,
         }}
       >
         {name}
       </Text>
-      <Text style={[
-        valueTextStyle
-      ]}>{value || ''}</Text>
+      <Text
+        style={[
+          {
+            maxWidth: '50%',
+          },
+          valueTextStyle
+        ]}
+      >
+        {value || ''}
+      </Text>
     </View>
   );
 };
